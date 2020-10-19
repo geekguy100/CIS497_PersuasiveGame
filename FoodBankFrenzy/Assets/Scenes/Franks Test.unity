@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 211077329}
   m_Layer: 0
   m_Name: conveyerbelt
-  m_TagString: Untagged
+  m_TagString: Conveyor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -288,7 +288,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 565a6e9eacf70b8468576d4415dd7fd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  food: {fileID: 7614858095853305324, guid: 300ff5bf08eec184582a2da949c58450, type: 3}
+  food:
+  - {fileID: 1286208937490538721, guid: 5671d0a2a3df5c34eb9f8d639461062d, type: 3}
+  - {fileID: 8571357387789233075, guid: ecfb53f8ba9adff4a80768f84a0ee0fe, type: 3}
+  - {fileID: 7614858095853305324, guid: 300ff5bf08eec184582a2da949c58450, type: 3}
+  - {fileID: 929971970005705269, guid: aa0a32ce7618fa141a1a678bf665372a, type: 3}
   delay: 1
   rate: 1
 --- !u!4 &687736543

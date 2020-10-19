@@ -9,12 +9,18 @@ public class MoveFood : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector2.right * Time.deltaTime * speed);
+        if (transform.position.y >= -2 && transform.position.y <= 0) 
+        { 
+            transform.Translate(Vector2.right * Time.deltaTime * speed);
+        }
+        
 
         if(transform.position.x > rightBound)
         {
             Destroy(gameObject);
         }
     }
+
+   
 
 }

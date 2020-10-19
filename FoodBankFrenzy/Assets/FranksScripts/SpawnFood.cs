@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SpawnFood : MonoBehaviour
 {
-    public GameObject food;
+    public GameObject[] food;
+    private int foodIndex;
     private Vector2 spawnPos;
 
     public float delay = 2;
@@ -21,10 +22,11 @@ public class SpawnFood : MonoBehaviour
     void Spawn()
     {
         y = Random.Range(0f, -2f);
+        foodIndex = Random.Range(0, food.Length);
 
         spawnPos = new Vector2(x, y);
 
-        Instantiate(food, spawnPos, food.transform.rotation);
+        Instantiate(food[foodIndex], spawnPos, food[foodIndex].transform.rotation);
     }
 
 }
