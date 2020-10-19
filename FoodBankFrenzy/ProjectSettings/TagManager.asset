@@ -6,6 +6,10 @@ TagManager:
   tags:
   - RedFood
   - Conveyer
+  - BlueFood
+  - GreenFood
+  - YellowFood
+  - Conveyor
   layers:
   - Default
   - TransparentFX
