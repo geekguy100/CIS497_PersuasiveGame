@@ -10,7 +10,7 @@ using UnityEngine;
 public class Pickup : MonoBehaviour
 {
     //The Rigidbody2D we are holding.
-    private Rigidbody2D objectInHand = null;
+    public Rigidbody2D objectInHand = null;
 
     private void Update()
     {
