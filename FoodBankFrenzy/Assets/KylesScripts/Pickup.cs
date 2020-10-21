@@ -10,10 +10,7 @@ using UnityEngine;
 public class Pickup : MonoBehaviour
 {
     //The Rigidbody2D we are holding.
-    public Rigidbody2D objectInHand = null;
-
-    //Reference to audio controller
-    public SFXController sfx;
+    public GameObject objectInHand = null;
 
     private void Update()
     {
@@ -23,12 +20,8 @@ public class Pickup : MonoBehaviour
         //Drop the object if we have something in our hand.
         else if (Input.GetButtonDown("Fire1") && objectInHand != null)
             DropObject();
-    }
-
-    private void FixedUpdate()
-    {
-        //Keep the grabbed rigidbody at the mouse's position.
-        if (objectInHand != null)
+        //If all other conditions fail, move the object to the mouse position.
+        else if (objectInHand != null)
             MoveObject();
     }
 
@@ -37,23 +30,20 @@ public class Pickup : MonoBehaviour
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, 0f);
 
-        //If what we hit has a Rigidbody2D, we can pick it up.
-        if (hit.rigidbody)
+        if (hit && hit.transform.CompareTag("Item"))
         {
-            objectInHand = hit.rigidbody;
-            sfx.audioSrc.PlayOneShot(sfx.grab, 0.5f);
+            objectInHand = hit.transform.gameObject;
         }
     }
 
     private void MoveObject()
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        objectInHand.MovePosition(mousePos);
+        objectInHand.transform.position = mousePos;
     }
 
     private void DropObject()
     {
         objectInHand = null;
-        sfx.audioSrc.PlayOneShot(sfx.drop, 0.2f);
     }
 }

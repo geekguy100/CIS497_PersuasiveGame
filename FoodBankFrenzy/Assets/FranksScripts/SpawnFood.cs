@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,7 +12,6 @@ public class SpawnFood : MonoBehaviour
     public float rate = 2;
 
     private float y;
-    private float x = -15f;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,10 +20,10 @@ public class SpawnFood : MonoBehaviour
 
     void Spawn()
     {
-        y = Random.Range(0f, -2f);
+        y = Random.Range(-0.5f, -2f);
         foodIndex = Random.Range(0, food.Length);
 
-        spawnPos = new Vector2(x, y);
+        spawnPos = new Vector2(transform.position.x, y);
 
         Instantiate(food[foodIndex], spawnPos, food[foodIndex].transform.rotation);
     }
