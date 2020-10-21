@@ -12,6 +12,9 @@ public class Pickup : MonoBehaviour
     //The Rigidbody2D we are holding.
     public Rigidbody2D objectInHand = null;
 
+    //Reference to audio controller
+    public SFXController sfx;
+
     private void Update()
     {
         //Check to see if there's an object we can pick up on mouse click if we don't have one in our hand.
@@ -38,6 +41,7 @@ public class Pickup : MonoBehaviour
         if (hit.rigidbody)
         {
             objectInHand = hit.rigidbody;
+            sfx.audioSrc.PlayOneShot(sfx.grab, 0.5f);
         }
     }
 
@@ -50,5 +54,6 @@ public class Pickup : MonoBehaviour
     private void DropObject()
     {
         objectInHand = null;
+        sfx.audioSrc.PlayOneShot(sfx.drop, 0.2f);
     }
 }
