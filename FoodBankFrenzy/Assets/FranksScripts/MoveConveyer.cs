@@ -6,26 +6,34 @@
 // Brief Description : Moves the conveyor belt and any game objects tagged Item along with it.
 *****************************************************************************/
 using UnityEngine;
+using System.Collections.Generic;
 
 public class MoveConveyer : MonoBehaviour
 {
     public float speed = 5f;
 
+    private List<Transform> itemsOnBelt = new List<Transform>();
+
     void Update()
     {
         transform.Translate(Vector2.right * Time.deltaTime * speed);
+
+        //Move each item on the belt.
+        foreach (Transform item in itemsOnBelt)
+            item.Translate(Vector2.right * speed * Time.deltaTime);
     }
 
 
-    //TODO: Since items appear jittery, try making a list of <Transform> and in Update move the items using a foreach().
-    private void OnTriggerStay2D(Collider2D col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        //If the item that entered the trigger is an Item that can be moved, move it along.
         if (col.CompareTag("Item"))
-        {
-            col.transform.Translate(Vector2.right * speed * Time.deltaTime);
-        }
+            itemsOnBelt.Add(col.transform);
     }
 
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.CompareTag("Item"))
+            itemsOnBelt.Remove(col.transform);
+    }
 
 }
