@@ -8,6 +8,9 @@ public class SpawnFood : MonoBehaviour
     private int foodIndex;
     private Vector2 spawnPos;
 
+    public float yMax = -0.5f;
+    public float yMin = -2f;
+
     public float delay = 2;
     public float rate = 2;
 
@@ -20,7 +23,7 @@ public class SpawnFood : MonoBehaviour
 
     void Spawn()
     {
-        y = Random.Range(-0.5f, -2f);
+        y = Random.Range(yMax, yMin);
         foodIndex = Random.Range(0, food.Length);
 
         spawnPos = new Vector2(transform.position.x, y);
