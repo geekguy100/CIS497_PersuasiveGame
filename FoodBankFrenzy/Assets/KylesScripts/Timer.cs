@@ -10,6 +10,14 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
+    public AudioSource audSrc;
+    public AudioClip timeLow;
+
+    private void Awake()
+    {
+        audSrc = GetComponent<AudioSource>();
+    }
+
     public float time;
     private bool countingDown;
 
@@ -22,6 +30,10 @@ public class Timer : MonoBehaviour
     {
         if (countingDown)
             Countdown();
+        if (time == 5)
+        {
+            audSrc.PlayOneShot(timeLow);
+        }
     }
 
     private void Countdown()

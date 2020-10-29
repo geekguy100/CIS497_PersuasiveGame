@@ -12,6 +12,16 @@ public class Pickup : MonoBehaviour
     //The Rigidbody2D we are holding.
     public GameObject objectInHand = null;
 
+    //Audio
+    public AudioClip grab;
+    public AudioClip drop;
+    public AudioSource audSrc;
+
+    private void Awake()
+    {
+        audSrc = GetComponent<AudioSource>();
+    }
+
     private void Update()
     {
         //Check to see if there's an object we can pick up on mouse click if we don't have one in our hand.
@@ -33,6 +43,7 @@ public class Pickup : MonoBehaviour
         if (hit && hit.transform.CompareTag("Item"))
         {
             objectInHand = hit.transform.gameObject;
+            audSrc.PlayOneShot(grab);
         }
     }
 
@@ -45,5 +56,6 @@ public class Pickup : MonoBehaviour
     private void DropObject()
     {
         objectInHand = null;
+        audSrc.PlayOneShot(drop);
     }
 }

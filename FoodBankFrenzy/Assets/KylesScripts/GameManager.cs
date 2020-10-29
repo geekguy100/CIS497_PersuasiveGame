@@ -7,6 +7,7 @@
 *****************************************************************************/
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -38,8 +39,10 @@ public class GameManager : Singleton<GameManager>
     /// <summary>
     /// Loads the next level to be played.
     /// </summary>
-    private void LoadLevel(int level)
+    public void LoadLevel(int level)
     {
+        AsyncOperation ao = SceneManager.LoadSceneAsync(level, LoadSceneMode.Additive);
+        //SceneManager.LoadScene(level);
         currentLevel = level;
         //TODO: Load a new level using SceneManager.
         levelTime = levelTimes[currentLevel];
