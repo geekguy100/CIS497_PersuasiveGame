@@ -7,20 +7,24 @@
 //                     Setting a time and counting down from said time to 0.
 *****************************************************************************/
 using UnityEngine;
+using System.Collections;
 
 public class Timer : MonoBehaviour
 {
     public AudioSource audSrc;
     public AudioClip timeLow;
+    public float time;
+    public bool countingDown { get; private set; }
 
     private void Awake()
     {
         audSrc = GetComponent<AudioSource>();
     }
 
-    public float time;
-    private bool countingDown;
-
+    /// <summary>
+    /// Starts the countdown of the timer.
+    /// This public void function is so I don't have to call StartCoroutine() in the GameManager.
+    /// </summary>
     public void BeginCountdown()
     {
         countingDown = true;
@@ -30,17 +34,24 @@ public class Timer : MonoBehaviour
     {
         if (countingDown)
             Countdown();
+
         if (time == 5)
-        {
             audSrc.PlayOneShot(timeLow);
-        }
     }
 
+    /// <summary>
+    /// Decrements the timer.
+    /// Once it reaches 0, stops counting down.
+    /// </summary>
     private void Countdown()
     {
         time -= Time.deltaTime;
-        print("TIMER: " + time);
+        GameManager.Instance.uiManager.UpdateTimerText(time);
+
         if (time <= 0)
+        {
             countingDown = false;
+            GameManager.Instance.GameOver = true;
+        }
     }
 }

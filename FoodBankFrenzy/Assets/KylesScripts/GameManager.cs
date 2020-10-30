@@ -9,22 +9,68 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(Timer))]
+[RequireComponent(typeof(ScoreManager))]
+[RequireComponent(typeof(UIManager))]
 public class GameManager : Singleton<GameManager>
 {
     //An array of individual level's play times.
-    [SerializeField] private float[] levelTimes;
+    [SerializeField] private float[] levelTimes = null;
 
     //The time of the currently loaded level.
     private float levelTime;
 
     //The timer object to keep track of game time.
-    public Timer timer { get; private set; }
+    private Timer timer;
+
+    //The ScoreManager to keep track of the score.
+    private ScoreManager scoreManager;
+
+    //The UIManager to update UI.
+    public UIManager uiManager { get; private set; }
 
     //The current level in play.
     private int currentLevel = 0;
 
     //True if play of the current level has begun.
     private bool levelStarted = false;
+
+    private bool gameOver = false;
+    private bool gameWon = false;
+    public bool GameWon
+    {
+        get { return gameWon; }
+        set
+        {
+            gameWon = value;
+
+            //Uncommenting the below code will make the game end upon achieving the max score.
+
+            //If the game has been won, make sure to update GameOver as well.
+            //if (gameWon)
+            //{
+            //    GameOver = true;
+            //}
+        }
+    }
+    public bool GameOver
+    {
+        get { return gameOver; }
+        set
+        {
+            gameOver = value;
+            if (gameOver && gameWon)
+            {
+                //The game has been won.
+                uiManager.UpdateGameStatusText("You win!");
+            }
+            else if (gameOver)
+            {
+                //The game is over and has been lost.
+                uiManager.UpdateGameStatusText("You lose!");
+            }
+        }
+    }
 
     protected override void Awake()
     {
@@ -33,7 +79,36 @@ public class GameManager : Singleton<GameManager>
         //Keep the GameManager persistent throughout the entire game.
         DontDestroyOnLoad(gameObject);
 
+        //Get required components
         timer = GetComponent<Timer>();
+        scoreManager = GetComponent<ScoreManager>();
+        uiManager = GetComponent<UIManager>();
+    }
+
+    private void Start()
+    {
+        //Perform level setup. Gameplay begins after user presses any key.
+        SetupLevel();
+    }
+
+    /// <summary>
+    /// Setup the current level by re-initializing level time and timer.
+    /// Also, call SetupLevel() in the ScoreManager and UIManager.
+    /// </summary>
+    private void SetupLevel()
+    {
+        levelTime = levelTimes[currentLevel];
+        timer.time = levelTime;
+        scoreManager.SetupLevel();
+        uiManager.SetupLevel();
+    }
+
+    private void Update()
+    {
+        if (Input.anyKeyDown && !levelStarted)
+        {
+            StartLevel();
+        }
     }
 
     /// <summary>
@@ -41,39 +116,19 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     public void LoadLevel(int level)
     {
-        AsyncOperation ao = SceneManager.LoadSceneAsync(level, LoadSceneMode.Additive);
-        //SceneManager.LoadScene(level);
         currentLevel = level;
-        //TODO: Load a new level using SceneManager.
-        levelTime = levelTimes[currentLevel];
-        timer.time = levelTime;
-    }
-
-    private void Update()
-    {
-        if (Input.GetButtonDown("Jump") && !levelStarted)
-        {
-            LoadLevel(0);
-            StartCoroutine("StartLevel");
-        }
+        //AsyncOperation ao = SceneManager.LoadSceneAsync(level, LoadSceneMode.Additive);
+        SceneManager.LoadScene(level);
+        SetupLevel();
     }
 
     /// <summary>
     /// Begin a level by waiting 3 seconds then starting the timer.
     /// </summary>
-    private IEnumerator StartLevel()
+    private void StartLevel()
     {
-        //TODO: Update UI to show user what's going on.
-        int t = 3;
-        while (t > 0)
-        {
-            //Display UI
-            print(t);
-            yield return new WaitForSeconds(1f);
-            --t;
-        }
-
         levelStarted = true;
+        uiManager.UpdateGameStatusText("");
         timer.BeginCountdown();
     }
 }

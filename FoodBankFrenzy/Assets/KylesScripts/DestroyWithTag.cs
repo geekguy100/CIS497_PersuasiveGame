@@ -9,11 +9,11 @@ using UnityEngine;
 
 public class DestroyWithTag : MonoBehaviour
 {
-    [SerializeField] private string tag;
+    [SerializeField] private string theTag = "";
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.CompareTag(tag))
+        if (col.CompareTag(theTag))
             Destroy(col.gameObject);
     }
 }
