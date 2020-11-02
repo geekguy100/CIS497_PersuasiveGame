@@ -48,6 +48,7 @@ public class PauseMenuScript : MonoBehaviour
     {
         //Sets the timescale back to default and goes back to the main menu Scene
         Time.timeScale = 1f;
+        SceneManager.LoadScene("Mainmenu");
     }
 
     private void Pause()

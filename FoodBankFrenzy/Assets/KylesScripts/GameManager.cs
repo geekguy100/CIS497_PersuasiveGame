@@ -35,6 +35,10 @@ public class GameManager : Singleton<GameManager>
     //True if play of the current level has begun.
     private bool levelStarted = false;
 
+    //cursor image
+    public Texture2D cursorTex;
+    public CursorMode cursorMode = CursorMode.Auto;
+
     //Audio vars
     public AudioSource audSrc;
     public AudioClip win;
@@ -97,6 +101,7 @@ public class GameManager : Singleton<GameManager>
         scoreManager = GetComponent<ScoreManager>();
         uiManager = GetComponent<UIManager>();
         audSrc = GetComponent<AudioSource>();
+        Cursor.SetCursor(cursorTex, Vector2.zero, cursorMode);
     }
 
     private void Start()
