@@ -9,10 +9,7 @@ public class SFXController : MonoBehaviour
 
     public AudioClip correct;
     public AudioClip incorrect;
-    public AudioClip win;
-    public AudioClip lose;
     public AudioClip boxFinish;
-    public AudioClip transition;
 
 
     // Start is called before the first frame update
