@@ -9,6 +9,8 @@ using UnityEngine;
 
 public class BoxBehaviour : MonoBehaviour
 {
+
+
     /// <summary>
     /// Checks to see if the correct item was in the box.
     /// </summary>
