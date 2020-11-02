@@ -35,6 +35,15 @@ public class GameManager : Singleton<GameManager>
     //True if play of the current level has begun.
     private bool levelStarted = false;
 
+    //Audio vars
+    public AudioSource audSrc;
+    public AudioClip win;
+    public AudioClip lose;
+
+    //Particle
+    public ParticleSystem winParticle;
+    public ParticleSystem loseParticle;
+
     private bool gameOver = false;
     private bool gameWon = false;
     public bool GameWon
@@ -63,11 +72,15 @@ public class GameManager : Singleton<GameManager>
             {
                 //The game has been won.
                 uiManager.UpdateGameStatusText("You win!");
+                audSrc.PlayOneShot(win);
+                winParticle.Play();
             }
             else if (gameOver)
             {
                 //The game is over and has been lost.
                 uiManager.UpdateGameStatusText("You lose!");
+                audSrc.PlayOneShot(lose);
+                loseParticle.Play();
             }
         }
     }
@@ -83,6 +96,7 @@ public class GameManager : Singleton<GameManager>
         timer = GetComponent<Timer>();
         scoreManager = GetComponent<ScoreManager>();
         uiManager = GetComponent<UIManager>();
+        audSrc = GetComponent<AudioSource>();
     }
 
     private void Start()

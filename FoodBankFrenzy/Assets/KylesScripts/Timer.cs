@@ -34,9 +34,6 @@ public class Timer : MonoBehaviour
     {
         if (countingDown)
             Countdown();
-
-        if (time == 5)
-            audSrc.PlayOneShot(timeLow);
     }
 
     /// <summary>
@@ -47,6 +44,9 @@ public class Timer : MonoBehaviour
     {
         time -= Time.deltaTime;
         GameManager.Instance.uiManager.UpdateTimerText(time);
+
+        if (time <= 5)
+            audSrc.PlayOneShot(timeLow, 0.2f);
 
         if (time <= 0)
         {
