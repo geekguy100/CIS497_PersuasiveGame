@@ -34,14 +34,18 @@ public class BoxManager : MonoBehaviour
     {
         int i;
 
+        //Get the next available location.
         for (i = 0; i < spawnLocations.Length; ++i)
         {
             if (locationAvailable[i])
                 break;
         }
 
+        //Instantiate the box
         BoxBehaviour box = Instantiate(boxPrefab, spawnLocations[i].position, Quaternion.identity);
         box.Init(minItems, maxItems);
+
+        return box;
     }
 
     private bool CanSpawnBox()
