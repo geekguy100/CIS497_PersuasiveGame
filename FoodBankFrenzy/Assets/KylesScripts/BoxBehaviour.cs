@@ -120,6 +120,7 @@ public class BoxBehaviour : MonoBehaviour
             if (container.ItemType == item.ItemType && container.Count > 0)
             {
                 container.Count--;
+                Destroy(item.gameObject);
                 return true;
             }
         }
@@ -146,17 +147,17 @@ public class BoxBehaviour : MonoBehaviour
     /// If so, decrement the box item count.
     /// </summary>
     /// <param name="col">The Collider2D entering the trigger.</param>
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerStay2D(Collider2D col)
     {
+        //Must left click to drop item
         if (col.CompareTag("Item"))
         {
-            Item item = col.GetComponent<Item>();
-            RemoveItem(item);
+            print("Can");
+            if (Input.GetButtonDown("Fire1"))
+            {
+                Item item = col.GetComponent<Item>();
+                RemoveItem(item);
+            }
         }
-    }
-
-    private void OnMouseDown()
-    {
-        GameManager.Instance.boxManager.OnBoxFinish(this);
     }
 }
