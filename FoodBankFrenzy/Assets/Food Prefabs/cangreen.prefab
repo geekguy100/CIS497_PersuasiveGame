@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7768814133927240945}
   - component: {fileID: 4713248777785700008}
   - component: {fileID: -2952300506851055496}
+  - component: {fileID: -8108008617002961052}
   m_Layer: 0
   m_Name: cangreen
   m_TagString: Item
@@ -131,3 +132,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &-8108008617002961052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8571357387789233075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7220f4a21c675342bff08b5d6cbb451, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 1

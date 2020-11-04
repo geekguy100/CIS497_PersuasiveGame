@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7733051698299612527}
   - component: {fileID: -2351458220376662004}
   - component: {fileID: -4343481421903885343}
+  - component: {fileID: 7110060985109246192}
   m_Layer: 0
   m_Name: canblue
   m_TagString: Item
@@ -131,3 +132,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &7110060985109246192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286208937490538721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7220f4a21c675342bff08b5d6cbb451, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 0

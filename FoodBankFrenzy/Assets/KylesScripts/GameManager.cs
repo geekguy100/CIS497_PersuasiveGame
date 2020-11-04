@@ -48,6 +48,9 @@ public class GameManager : Singleton<GameManager>
     public ParticleSystem winParticle;
     public ParticleSystem loseParticle;
 
+    //Box Prefab
+    [SerializeField] private BoxBehaviour box;
+
     private bool gameOver = false;
     private bool gameWon = false;
     public bool GameWon
@@ -149,5 +152,13 @@ public class GameManager : Singleton<GameManager>
         levelStarted = true;
         uiManager.UpdateGameStatusText("");
         timer.BeginCountdown();
+
+        SpawnBox();
+    }
+
+    private void SpawnBox()
+    {
+        BoxBehaviour b = Instantiate(box);
+        b.Init(4,4);
     }
 }

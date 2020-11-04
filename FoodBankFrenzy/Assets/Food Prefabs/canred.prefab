@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7614858095853305325}
   - component: {fileID: -5773446704692599417}
   - component: {fileID: 7490363005355861027}
+  - component: {fileID: 7406597358791028057}
   m_Layer: 0
   m_Name: canred
   m_TagString: Item
@@ -131,3 +132,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &7406597358791028057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7614858095853305324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7220f4a21c675342bff08b5d6cbb451, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 2
