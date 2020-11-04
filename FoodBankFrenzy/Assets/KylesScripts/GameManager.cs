@@ -34,8 +34,8 @@ public class GameManager : Singleton<GameManager>
     private float levelTime;
 
     //The min and max items to put into a box; the level's difficulty
-    private int minItems = 5;
-    private int maxItems = 5;
+    private int minItems = 20;
+    private int maxItems = 20;
 
     //cursor image
     public Texture2D cursorTex;
