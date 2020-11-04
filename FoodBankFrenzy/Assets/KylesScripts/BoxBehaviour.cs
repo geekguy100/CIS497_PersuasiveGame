@@ -22,18 +22,26 @@ public class BoxBehaviour : MonoBehaviour
     //The number of items in the box.
     private int itemCount = 0;
 
+    private int id = -1;
+    public int ID { get { return id; } }
+
     private GameObject canvas;
 
     //The UIItemContainers used to display box contents.
     [SerializeField] private UIItemContainer[] displays = new UIItemContainer[4];
     private List<Item.Type> containedTypes = new List<Item.Type>();
 
-    public void Init(int minItems, int maxItems)
+    public void Init(int minItems, int maxItems, int id)
     {
         this.minItems = minItems;
         this.maxItems = maxItems;
+        this.id = id;
         canvas = transform.GetChild(0).gameObject;
         anim = GetComponent<Animator>();
+
+        //Make sure the box is closed and all UI hidden 
+        //until it has been moved into position.
+        Close();
         
         SetupRequiredContents();
     }
@@ -124,13 +132,13 @@ public class BoxBehaviour : MonoBehaviour
     public void Open()
     {
         canvas.SetActive(true);
-        anim.SetBool("isComplete", true);
+        anim.SetBool("isComplete", false);
     }
 
     public void Close()
     {
         canvas.SetActive(false);
-        anim.SetBool("isComplete", false);
+        anim.SetBool("isComplete", true);
     }
 
     /// <summary>
@@ -145,5 +153,10 @@ public class BoxBehaviour : MonoBehaviour
             Item item = col.GetComponent<Item>();
             RemoveItem(item);
         }
+    }
+
+    private void OnMouseDown()
+    {
+        GameManager.Instance.boxManager.OnBoxFinish(this);
     }
 }

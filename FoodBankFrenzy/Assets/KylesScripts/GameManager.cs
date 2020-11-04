@@ -12,28 +12,30 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Timer))]
 [RequireComponent(typeof(ScoreManager))]
 [RequireComponent(typeof(UIManager))]
+[RequireComponent(typeof(BoxManager))]
 public class GameManager : Singleton<GameManager>
 {
     //An array of individual level's play times.
     [SerializeField] private float[] levelTimes = null;
 
-    //The time of the currently loaded level.
-    private float levelTime;
-
     //The timer object to keep track of game time.
     private Timer timer;
-
     //The ScoreManager to keep track of the score.
-    private ScoreManager scoreManager;
-
+    public ScoreManager scoreManager { get; private set; }
     //The UIManager to update UI.
     public UIManager uiManager { get; private set; }
+    public BoxManager boxManager { get; private set; }
 
     //The current level in play.
     private int currentLevel = 0;
-
     //True if play of the current level has begun.
     private bool levelStarted = false;
+    //The time of the currently loaded level.
+    private float levelTime;
+
+    //The min and max items to put into a box; the level's difficulty
+    private int minItems = 5;
+    private int maxItems = 5;
 
     //cursor image
     public Texture2D cursorTex;
@@ -104,6 +106,8 @@ public class GameManager : Singleton<GameManager>
         scoreManager = GetComponent<ScoreManager>();
         uiManager = GetComponent<UIManager>();
         audSrc = GetComponent<AudioSource>();
+        boxManager = GetComponent<BoxManager>();
+
         Cursor.SetCursor(cursorTex, Vector2.zero, cursorMode);
     }
 
@@ -131,6 +135,9 @@ public class GameManager : Singleton<GameManager>
         {
             StartLevel();
         }
+
+        if (Input.GetKeyDown(KeyCode.Return))
+            SpawnBox();
     }
 
     /// <summary>
@@ -150,15 +157,19 @@ public class GameManager : Singleton<GameManager>
     private void StartLevel()
     {
         levelStarted = true;
-        uiManager.UpdateGameStatusText("");
+        uiManager.UpdateGameStatusText(string.Empty);
         timer.BeginCountdown();
 
-        SpawnBox();
+        //TODO: How often should boxes be spawned? Should there be a timer that decreases with
+        //level difficulty? So in harder levels boxes spawn more frequently?
+        
+        //SpawnBox();
     }
 
-    private void SpawnBox()
+    //TODO: Should a box spawn in a replacement once it is finished being filled up?
+    //Should there be a queue that fills when all of the available positions are filled?
+    public void SpawnBox()
     {
-        BoxBehaviour b = Instantiate(box);
-        b.Init(4,4);
+        boxManager.InstantiateBox(minItems, maxItems);
     }
 }

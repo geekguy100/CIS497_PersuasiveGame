@@ -13,7 +13,7 @@ public class Timer : MonoBehaviour
 {
     public AudioSource audSrc;
     public AudioClip timeLow;
-    public float time;
+    [HideInInspector] public float time;
     public bool countingDown { get; private set; }
 
     private void Awake()
@@ -45,8 +45,8 @@ public class Timer : MonoBehaviour
         time -= Time.deltaTime;
         GameManager.Instance.uiManager.UpdateTimerText(time);
 
-        if (time <= 5)
-            audSrc.PlayOneShot(timeLow, 0.2f);
+        //if (time <= 5)
+        //    audSrc.PlayOneShot(timeLow, 0.2f);
 
         if (time <= 0)
         {

@@ -1,9 +1,9 @@
 /*****************************************************************************
 // File Name :         UIItemContainer.cs
 // Author :            Kyle Grenier
-// Creation Date :     #CREATIONDATE#
+// Creation Date :     11/3/2020
 //
-// Brief Description : ADD BRIEF DESCRIPTION OF THE FILE HERE
+// Brief Description : A class that is used to control updating the UI associated with boxes.
 *****************************************************************************/
 using UnityEngine;
 using UnityEngine.UI;
