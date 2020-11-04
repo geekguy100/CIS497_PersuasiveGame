@@ -57,7 +57,7 @@ public class BoxBehaviour : MonoBehaviour
         //Adds a random number of items within the bounds to the box.
         for (int i = 0; i < numItems; ++i)
         {
-            int n = Random.Range(0, items.Length - 1);
+            int n = Random.Range(0, items.Length);
             AddItem(items[n]);
         }
     }
