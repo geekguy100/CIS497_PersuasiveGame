@@ -1795,6 +1795,7 @@ MonoBehaviour:
   lose: {fileID: 8300000, guid: 79e6baad2fd414b82a6d49ce1568d2e5, type: 3}
   winParticle: {fileID: 1330353173}
   loseParticle: {fileID: 908260775}
+  box: {fileID: 0}
 --- !u!4 &1330620866
 Transform:
   m_ObjectHideFlags: 0
@@ -2097,7 +2098,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -100
   m_Sprite: {fileID: 21300000, guid: 72a2af0e524c1c842bc518e11e28484d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
