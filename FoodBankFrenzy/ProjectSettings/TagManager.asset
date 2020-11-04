@@ -49,3 +49,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Boxes
+    uniqueID: 3754069765
+    locked: 0
+  - name: Cans
+    uniqueID: 3931370119
+    locked: 0

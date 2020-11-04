@@ -150,10 +150,14 @@ public class BoxBehaviour : MonoBehaviour
     private void OnTriggerStay2D(Collider2D col)
     {
         //Must left click to drop item
-        if (col.CompareTag("Item") && Input.GetButtonDown("Fire1"))
+        if (col.CompareTag("Item"))
         {
-            Item item = col.GetComponent<Item>();
-            RemoveItem(item);
+            print("Can");
+            if (Input.GetButtonDown("Fire1"))
+            {
+                Item item = col.GetComponent<Item>();
+                RemoveItem(item);
+            }
         }
     }
 }
