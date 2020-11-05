@@ -45,10 +45,15 @@ public class GameManager : Singleton<GameManager>
     public AudioSource audSrc;
     public AudioClip win;
     public AudioClip lose;
+    public AudioClip correct;
+    public AudioClip incorrect;
+    public AudioClip complete;
 
     //Particle
     public ParticleSystem winParticle;
     public ParticleSystem loseParticle;
+    public ParticleSystem correctParticle;
+    public ParticleSystem incorrectParticle;
 
     //Box Prefab
     [SerializeField] private BoxBehaviour box;

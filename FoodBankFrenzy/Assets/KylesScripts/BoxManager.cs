@@ -94,6 +94,7 @@ public class BoxManager : MonoBehaviour
         locationsAvailable[box.ID] = true;
 
         box.Close();
+        GameManager.Instance.audSrc.PlayOneShot(GameManager.Instance.complete, 0.2f);
         //TODO: Tween the box off screen. For now I'm just destroying it.
         Destroy(box.gameObject, 1f);
 

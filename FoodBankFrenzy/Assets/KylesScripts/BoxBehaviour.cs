@@ -26,6 +26,7 @@ public class BoxBehaviour : MonoBehaviour
     public int ID { get { return id; } }
 
     private GameObject canvas;
+    
 
     //The UIItemContainers used to display box contents.
     [SerializeField] private UIItemContainer[] displays = new UIItemContainer[4];
@@ -119,12 +120,18 @@ public class BoxBehaviour : MonoBehaviour
             //Only decrement from the UIItemContainer if we still need items of that type.
             if (container.ItemType == item.ItemType && container.Count > 0)
             {
+                //GameManager.Instance.correctParticle.transform.position = item.transform.position;
+                GameManager.Instance.correctParticle.Play();
+                GameManager.Instance.audSrc.PlayOneShot(GameManager.Instance.correct, 0.2f);
                 container.Count--;
                 Destroy(item.gameObject);
                 return true;
             }
         }
-
+        //Incorrect item
+        //GameManager.Instance.correctParticle.transform.position = item.transform.position;
+        GameManager.Instance.incorrectParticle.Play();
+        GameManager.Instance.audSrc.PlayOneShot(GameManager.Instance.incorrect, 0.2f);
         return false;
         //TODO: Destroy the item we tried to place! Similar to dropping an item on the floor.
         //Maybe use layers for the box trigger so we can keep track of what exactly the box can and cannot accept?

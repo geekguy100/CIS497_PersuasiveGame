@@ -6,7 +6,7 @@ public class RepeatConveyerSprite : MonoBehaviour
 {
     private Vector2 startPos;
     private float width;
-    private float offset = 2.5f;
+    private float offset = 2.08f;//2.5f;
 
    
     void Start()
