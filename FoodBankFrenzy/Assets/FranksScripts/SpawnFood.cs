@@ -15,10 +15,25 @@ public class SpawnFood : MonoBehaviour
     public float rate = 2;
 
     private float y;
+
+    public bool isStarted = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("Spawn", delay, rate);
+        
+    }
+
+    private void Update()
+    {
+        if (GameManager.Instance.levelStarted)
+        {
+            if (!isStarted)
+            {
+                isStarted = true;
+                InvokeRepeating("Spawn", delay, rate);
+            }
+        }
     }
 
     void Spawn()
@@ -30,5 +45,6 @@ public class SpawnFood : MonoBehaviour
 
         Instantiate(food[foodIndex], spawnPos, food[foodIndex].transform.rotation);
     }
+    
 
 }

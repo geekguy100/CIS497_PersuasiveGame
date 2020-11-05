@@ -29,7 +29,7 @@ public class GameManager : Singleton<GameManager>
     //The current level in play.
     private int currentLevel = 0;
     //True if play of the current level has begun.
-    private bool levelStarted = false;
+    public bool levelStarted = false;
     //The time of the currently loaded level.
     private float levelTime;
 
@@ -43,6 +43,7 @@ public class GameManager : Singleton<GameManager>
 
     //Audio vars
     public AudioSource audSrc;
+    public AudioClip bgMusic;
     public AudioClip win;
     public AudioClip lose;
     public AudioClip correct;
@@ -54,6 +55,7 @@ public class GameManager : Singleton<GameManager>
     public ParticleSystem loseParticle;
     public ParticleSystem correctParticle;
     public ParticleSystem incorrectParticle;
+    
 
     //Box Prefab
     [SerializeField] private BoxBehaviour box;
@@ -162,6 +164,7 @@ public class GameManager : Singleton<GameManager>
     private void StartLevel()
     {
         levelStarted = true;
+        audSrc.PlayOneShot(bgMusic);
         uiManager.UpdateGameStatusText(string.Empty);
         timer.BeginCountdown();
 

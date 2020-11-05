@@ -16,11 +16,15 @@ public class MoveConveyer : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector2.right * Time.deltaTime * speed);
+        if (GameManager.Instance.levelStarted)
+        {
+            transform.Translate(Vector2.right * Time.deltaTime * speed);
 
-        //Move each item on the belt.
-        foreach (Transform item in itemsOnBelt)
-            item.Translate(Vector2.right * speed * Time.deltaTime);
+            //Move each item on the belt.
+            foreach (Transform item in itemsOnBelt)
+                item.Translate(Vector2.right * speed * Time.deltaTime);
+        }
+        
     }
 
 
