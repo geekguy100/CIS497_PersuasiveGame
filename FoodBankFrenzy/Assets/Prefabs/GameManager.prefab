@@ -11,9 +11,7 @@ GameObject:
   - component: {fileID: 3809129678426328988}
   - component: {fileID: 3809129678426328991}
   - component: {fileID: 3809129678426328990}
-  - component: {fileID: 3809129678426329057}
   - component: {fileID: 3809129678426329056}
-  - component: {fileID: 3809129678426329059}
   - component: {fileID: 3809129678426328989}
   m_Layer: 0
   m_Name: GameManager
@@ -48,8 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4e5d767fe090f549b65ab3244e3d1e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelTimes:
-  - 900
+  gameUI: {fileID: 0}
   levelStarted: 0
   cursorTex: {fileID: 2800000, guid: 18cfbf500fa55194d84abf90c835f14a, type: 3}
   cursorMode: 0
@@ -64,7 +61,6 @@ MonoBehaviour:
   loseParticle: {fileID: 0}
   correctParticle: {fileID: 0}
   incorrectParticle: {fileID: 0}
-  box: {fileID: 2970342699870805520, guid: a854182058eb0e24a841ce5248160fd4, type: 3}
 --- !u!114 &3809129678426328990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,22 +76,6 @@ MonoBehaviour:
   audSrc: {fileID: 3809129678426328989}
   timeLow: {fileID: 8300000, guid: c5e2a73ad4706440f93bf05df0b465fe, type: 3}
   time: 900
---- !u!114 &3809129678426329057
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3809129678426329058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e25bf9ab4a89c7242961f643b3c1cc42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeText: {fileID: 0}
-  numBoxesText: {fileID: 0}
-  scoreText: {fileID: 0}
-  gameStatusText: {fileID: 0}
 --- !u!114 &3809129678426329056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,27 +89,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxScore: 90
---- !u!114 &3809129678426329059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3809129678426329058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4deeb991a8606d84fa8ba82ea631817a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boxPrefab: {fileID: 2970342699870805520, guid: a854182058eb0e24a841ce5248160fd4, type: 3}
-  spawnLocations:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  finalLocations:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!82 &3809129678426328989
 AudioSource:
   m_ObjectHideFlags: 0

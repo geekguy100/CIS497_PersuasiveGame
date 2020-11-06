@@ -969,6 +969,7 @@ GameObject:
   - component: {fileID: 8338384525504453146}
   - component: {fileID: 8338384525504453147}
   - component: {fileID: 1946199546}
+  - component: {fileID: 5034253886257097536}
   m_Layer: 5
   m_Name: InGameUI
   m_TagString: Untagged
@@ -1015,7 +1016,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -1071,6 +1072,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PauseMenuUI: {fileID: 7962548445357619374}
+--- !u!114 &5034253886257097536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8338384525504453148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e25bf9ab4a89c7242961f643b3c1cc42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeText: {fileID: 6226208}
+  numBoxesText: {fileID: 8338384527073256870}
+  gameStatusText: {fileID: 3148341489245006140}
 --- !u!1 &8338384527073256856
 GameObject:
   m_ObjectHideFlags: 0

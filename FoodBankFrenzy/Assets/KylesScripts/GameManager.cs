@@ -11,17 +11,16 @@ using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Timer))]
 [RequireComponent(typeof(ScoreManager))]
-[RequireComponent(typeof(UIManager))]
-[RequireComponent(typeof(BoxManager))]
 public class GameManager : Singleton<GameManager>
 {
-    //An array of individual level's play times.
-    [SerializeField] private float[] levelTimes = null;
+    //The UI Prefab.
+    [SerializeField] private GameObject gameUI;
 
     //The timer object to keep track of game time.
     private Timer timer;
     //The ScoreManager to keep track of the score.
     public ScoreManager scoreManager { get; private set; }
+
     //The UIManager to update UI.
     public UIManager uiManager { get; private set; }
     public BoxManager boxManager { get; private set; }
@@ -30,12 +29,10 @@ public class GameManager : Singleton<GameManager>
     private int currentLevel = 0;
     //True if play of the current level has begun.
     public bool levelStarted = false;
-    //The time of the currently loaded level.
-    private float levelTime;
+    private bool levelSetup = false;
 
-    //The min and max items to put into a box; the level's difficulty
-    private int minItems = 20;
-    private int maxItems = 20;
+    //The current level in play.
+    private Level level;
 
     //cursor image
     public Texture2D cursorTex;
@@ -55,10 +52,6 @@ public class GameManager : Singleton<GameManager>
     public ParticleSystem loseParticle;
     public ParticleSystem correctParticle;
     public ParticleSystem incorrectParticle;
-    
-
-    //Box Prefab
-    [SerializeField] private BoxBehaviour box;
 
     private bool gameOver = false;
     private bool gameWon = false;
@@ -106,23 +99,20 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
 
         //Keep the GameManager persistent throughout the entire game.
-        //DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);
 
         //Get required components
         timer = GetComponent<Timer>();
         scoreManager = GetComponent<ScoreManager>();
         uiManager = GetComponent<UIManager>();
         audSrc = GetComponent<AudioSource>();
-        boxManager = GetComponent<BoxManager>();
 
         Cursor.SetCursor(cursorTex, Vector2.zero, cursorMode);
     }
 
     private void Start()
     {
-        //Perform level setup. Gameplay begins after user presses any key.
         audSrc.PlayOneShot(bgMusic);
-        SetupLevel();
     }
 
     /// <summary>
@@ -131,20 +121,35 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     private void SetupLevel()
     {
-        levelTime = levelTimes[currentLevel];
-        timer.time = levelTime;
+        level = FindObjectOfType<Level>();
+
+        //If there is no level found, we're on a menu scene.
+        if (level == null)
+            return;
+
+        timer.time = level.LevelTime;
         scoreManager.SetupLevel();
+
+        if (!level.IsTutorial)
+            uiManager = Instantiate(gameUI).GetComponent<UIManager>();
+        else
+            uiManager = FindObjectOfType<UIManager>();
+
         uiManager.SetupLevel();
+        boxManager = FindObjectOfType<BoxManager>();
+
+        levelSetup = true;
     }
 
     private void Update()
     {
-        if (Input.anyKeyDown && !levelStarted)
+        if (Input.anyKeyDown && levelSetup && !levelStarted)
         {
             StartLevel();
         }
 
-        if (Input.GetKeyDown(KeyCode.Return))
+        //Debugging purposes
+        if (Input.GetKeyDown(KeyCode.Return) && levelStarted)
             SpawnBox();
     }
 
@@ -154,7 +159,6 @@ public class GameManager : Singleton<GameManager>
     public void LoadLevel(int level)
     {
         currentLevel = level;
-        //AsyncOperation ao = SceneManager.LoadSceneAsync(level, LoadSceneMode.Additive);
         SceneManager.LoadScene(level);
         SetupLevel();
     }
@@ -167,17 +171,18 @@ public class GameManager : Singleton<GameManager>
         levelStarted = true;
         uiManager.UpdateGameStatusText(string.Empty);
         timer.BeginCountdown();
-
-        //TODO: How often should boxes be spawned? Should there be a timer that decreases with
-        //level difficulty? So in harder levels boxes spawn more frequently?
-        
-        //SpawnBox();
     }
 
     //TODO: Should a box spawn in a replacement once it is finished being filled up?
     //Should there be a queue that fills when all of the available positions are filled?
     public void SpawnBox()
     {
-        boxManager.InstantiateBox(minItems, maxItems);
+        if (!levelStarted)
+        {
+            Debug.LogWarning("[GameManager]: Trying to spawn a box when the level isn't started.");
+            return;
+        }
+
+        boxManager.InstantiateBox(level.MinItems, level.MaxItems );
     }
 }

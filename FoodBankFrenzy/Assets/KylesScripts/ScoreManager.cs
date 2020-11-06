@@ -18,7 +18,6 @@ public class ScoreManager : MonoBehaviour
         set
         {
             ++score;
-            GameManager.Instance.uiManager.UpdateScoreText(score);
 
             if (score >= maxScore)
             {
