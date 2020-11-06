@@ -29,10 +29,10 @@ public class UIManager : MonoBehaviour
         gameStatusText.text = t;
     }
 
-    public void SetupLevel()
+    public void SetupLevel(Level l)
     {
         UpdateTimerText(0);
-        UpdateNumBoxesText(0);
+        UpdateNumBoxesText(l.MaxScore);
         UpdateGameStatusText("Press any key to start.");
     }
 }

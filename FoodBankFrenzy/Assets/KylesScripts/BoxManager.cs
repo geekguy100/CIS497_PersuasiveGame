@@ -90,7 +90,7 @@ public class BoxManager : MonoBehaviour
     /// </summary>
     public void OnBoxFinish(BoxBehaviour box)
     {
-        GameManager.Instance.scoreManager.Score++;
+        GameManager.Instance.level.Score++;
         locationsAvailable[box.ID] = true;
 
         box.Close();

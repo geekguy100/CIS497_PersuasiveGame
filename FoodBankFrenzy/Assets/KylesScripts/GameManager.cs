@@ -10,7 +10,6 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Timer))]
-[RequireComponent(typeof(ScoreManager))]
 public class GameManager : Singleton<GameManager>
 {
     //The UI Prefab.
@@ -18,8 +17,6 @@ public class GameManager : Singleton<GameManager>
 
     //The timer object to keep track of game time.
     private Timer timer;
-    //The ScoreManager to keep track of the score.
-    public ScoreManager scoreManager { get; private set; }
 
     //The UIManager to update UI.
     public UIManager uiManager { get; private set; }
@@ -32,7 +29,7 @@ public class GameManager : Singleton<GameManager>
     private bool levelSetup = false;
 
     //The current level in play.
-    private Level level;
+    public Level level { get; private set; }
 
     //cursor image
     public Texture2D cursorTex;
@@ -103,7 +100,6 @@ public class GameManager : Singleton<GameManager>
 
         //Get required components
         timer = GetComponent<Timer>();
-        scoreManager = GetComponent<ScoreManager>();
         uiManager = GetComponent<UIManager>();
         audSrc = GetComponent<AudioSource>();
 
@@ -125,17 +121,19 @@ public class GameManager : Singleton<GameManager>
 
         //If there is no level found, we're on a menu scene.
         if (level == null)
+        {
+            print("[GameManager]: Level data could not be found. Missing prefab?");
             return;
+        }
 
         timer.time = level.LevelTime;
-        scoreManager.SetupLevel();
 
         if (!level.IsTutorial)
             uiManager = Instantiate(gameUI).GetComponent<UIManager>();
         else
             uiManager = FindObjectOfType<UIManager>();
 
-        uiManager.SetupLevel();
+        uiManager.SetupLevel(level);
         boxManager = FindObjectOfType<BoxManager>();
 
         levelSetup = true;
@@ -151,6 +149,12 @@ public class GameManager : Singleton<GameManager>
         //Debugging purposes
         if (Input.GetKeyDown(KeyCode.Return) && levelStarted)
             SpawnBox();
+
+        //Debugging Purposes:
+        if (Input.GetKeyDown(KeyCode.Q) && !levelSetup)
+        {
+            SetupLevel();
+        }
     }
 
     /// <summary>
@@ -158,8 +162,20 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     public void LoadLevel(int level)
     {
+        StartCoroutine(LoadLevelEnumerator(level));
+    }
+
+    private IEnumerator LoadLevelEnumerator(int level)
+    {
         currentLevel = level;
-        SceneManager.LoadScene(level);
+        AsyncOperation ao = SceneManager.LoadSceneAsync(level, LoadSceneMode.Single);
+        while(!ao.isDone)
+        {
+            print("Level Loading...");
+            yield return null;
+        }
+
+        //Level loaded; Set it up.
         SetupLevel();
     }
 

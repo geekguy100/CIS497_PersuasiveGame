@@ -159,7 +159,6 @@ public class BoxBehaviour : MonoBehaviour
         //Must left click to drop item
         if (col.CompareTag("Item"))
         {
-            print("Can");
             if (Input.GetButtonDown("Fire1"))
             {
                 Item item = col.GetComponent<Item>();

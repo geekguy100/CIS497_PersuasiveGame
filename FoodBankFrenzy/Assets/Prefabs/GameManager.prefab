@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4e5d767fe090f549b65ab3244e3d1e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameUI: {fileID: 0}
+  gameUI: {fileID: 8338384525504453148, guid: 166036ee283ee7849a9abed981f21d1d, type: 3}
   levelStarted: 0
   cursorTex: {fileID: 2800000, guid: 18cfbf500fa55194d84abf90c835f14a, type: 3}
   cursorMode: 0
