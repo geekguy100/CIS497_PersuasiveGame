@@ -219,6 +219,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7487193595057587835, guid: 6d9912773e5b5a646954c82b28a86209, type: 3}
+      propertyPath: speed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7487193595213816802, guid: 6d9912773e5b5a646954c82b28a86209, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1656,38 +1660,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3809129678426328989, guid: 7a4b7ac69a081c84992bdbbdbe0c8eb1, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3809129678426328989, guid: 7a4b7ac69a081c84992bdbbdbe0c8eb1, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3809129678426328989, guid: 7a4b7ac69a081c84992bdbbdbe0c8eb1, type: 3}
-      propertyPath: Loop
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3809129678426328991, guid: 7a4b7ac69a081c84992bdbbdbe0c8eb1, type: 3}
-      propertyPath: winParticle
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3809129678426328991, guid: 7a4b7ac69a081c84992bdbbdbe0c8eb1, type: 3}
       propertyPath: loseParticle
       value: 
       objectReference: {fileID: 1353010212}
-    - target: {fileID: 3809129678426328991, guid: 7a4b7ac69a081c84992bdbbdbe0c8eb1, type: 3}
-      propertyPath: correctParticle
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3809129678426328991, guid: 7a4b7ac69a081c84992bdbbdbe0c8eb1, type: 3}
-      propertyPath: incorrectParticle
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3809129678426328991, guid: 7a4b7ac69a081c84992bdbbdbe0c8eb1, type: 3}
-      propertyPath: bgMusic
-      value: 
-      objectReference: {fileID: 8300000, guid: b4e03b819912ca746b68c6610bd537b3, type: 3}
     - target: {fileID: 3809129678426329057, guid: 7a4b7ac69a081c84992bdbbdbe0c8eb1, type: 3}
       propertyPath: timeText
       value: 

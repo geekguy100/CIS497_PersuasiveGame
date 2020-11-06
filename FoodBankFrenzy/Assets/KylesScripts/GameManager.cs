@@ -106,7 +106,7 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
 
         //Keep the GameManager persistent throughout the entire game.
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
 
         //Get required components
         timer = GetComponent<Timer>();
@@ -121,6 +121,7 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         //Perform level setup. Gameplay begins after user presses any key.
+        audSrc.PlayOneShot(bgMusic);
         SetupLevel();
     }
 
@@ -164,7 +165,6 @@ public class GameManager : Singleton<GameManager>
     private void StartLevel()
     {
         levelStarted = true;
-        audSrc.PlayOneShot(bgMusic);
         uiManager.UpdateGameStatusText(string.Empty);
         timer.BeginCountdown();
 
