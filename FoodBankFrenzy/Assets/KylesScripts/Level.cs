@@ -49,5 +49,12 @@ public class Level : MonoBehaviour
     { get
         { return maxItems; }
     
-}
+    }
+    
+    //[SerializeField] private int maxBoxes = 3;
+    //public int MaxBoxes
+    //{
+    //    get
+    //    { return maxBoxes; }
+    //}
 }

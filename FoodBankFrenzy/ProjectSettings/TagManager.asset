@@ -12,6 +12,8 @@ TagManager:
   - Conveyor
   - FxTemporaire
   - Item
+  - Level
+  - BoxManager
   layers:
   - Default
   - TransparentFX

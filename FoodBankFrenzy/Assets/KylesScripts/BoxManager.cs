@@ -12,11 +12,13 @@ public class BoxManager : MonoBehaviour
 {
     //The box prefab to be instantiated.
     [SerializeField] private BoxBehaviour boxPrefab;
+    [SerializeField] private Level level;
 
     //Parallel arrays: The spawning locations and locations the box should tween to, respectively.
     [SerializeField] private Transform[] spawnLocations;
     [SerializeField] private Transform[] finalLocations;
     private bool[] locationsAvailable;
+    public int boxesActive = 0;
 
     //The boxes on standby that want to be spawned but cannot be.
     private int waitingBoxes = 0;
@@ -45,7 +47,7 @@ public class BoxManager : MonoBehaviour
         //Get the next available location.
         for (i = 0; i < spawnLocations.Length; ++i)
         {
-            if (locationsAvailable[i])
+            if (locationsAvailable[i] && boxesActive < level.MaxScore)//MaxBoxes)
                 break;
         }
 
@@ -67,6 +69,7 @@ public class BoxManager : MonoBehaviour
         TweenObject(box.gameObject, finalLocations[i].position, 1f);
 
         locationsAvailable[i] = false;
+        boxesActive++;
     }
 
     /// <summary>

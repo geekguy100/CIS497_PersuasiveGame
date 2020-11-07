@@ -26,6 +26,7 @@ public class BoxBehaviour : MonoBehaviour
     public int ID { get { return id; } }
 
     private GameObject canvas;
+    private BoxManager boxManager;
     
 
     //The UIItemContainers used to display box contents.
@@ -39,6 +40,7 @@ public class BoxBehaviour : MonoBehaviour
         this.id = id;
         canvas = transform.GetChild(0).gameObject;
         anim = GetComponent<Animator>();
+        boxManager = GameObject.FindGameObjectWithTag("BoxManager").GetComponent<BoxManager>();
 
         //Make sure the box is closed and all UI hidden 
         //until it has been moved into position.
@@ -121,17 +123,24 @@ public class BoxBehaviour : MonoBehaviour
             if (container.ItemType == item.ItemType && container.Count > 0)
             {
                 //GameManager.Instance.correctParticle.transform.position = item.transform.position;
-                GameManager.Instance.correctParticle.Play();
+                //GameManager.Instance.correctParticle.Play();
                 GameManager.Instance.audSrc.PlayOneShot(GameManager.Instance.correct, 0.2f);
                 container.Count--;
                 Destroy(item.gameObject);
+
+                if (container.Count == 0)
+                {
+                    boxManager.OnBoxFinish(this);
+                }
+
                 return true;
             }
         }
         //Incorrect item
         //GameManager.Instance.correctParticle.transform.position = item.transform.position;
-        GameManager.Instance.incorrectParticle.Play();
+        //GameManager.Instance.incorrectParticle.Play();
         GameManager.Instance.audSrc.PlayOneShot(GameManager.Instance.incorrect, 0.2f);
+        Destroy(item.gameObject);
         return false;
         //TODO: Destroy the item we tried to place! Similar to dropping an item on the floor.
         //Maybe use layers for the box trigger so we can keep track of what exactly the box can and cannot accept?
@@ -161,8 +170,8 @@ public class BoxBehaviour : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire1"))
             {
-                Item item = col.GetComponent<Item>();
-                RemoveItem(item);
+            Item item = col.GetComponent<Item>();
+            RemoveItem(item);
             }
         }
     }

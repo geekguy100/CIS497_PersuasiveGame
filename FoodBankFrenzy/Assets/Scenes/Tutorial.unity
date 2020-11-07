@@ -334,6 +334,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a19ed85de2897164aa929468e87e69d6, type: 3}
+--- !u!198 &407162981 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198405478074982118, guid: 4adffb0018aeda44e9263f901167af1f, type: 3}
+  m_PrefabInstance: {fileID: 879898256}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &518062593
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -498,6 +503,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7835910116366320035, guid: 5015ef5f75d77e246b0662ad2596ad10, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 73.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8334180655227059681, guid: 5015ef5f75d77e246b0662ad2596ad10, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -311.8
+      objectReference: {fileID: 0}
     - target: {fileID: 8338384525504453144, guid: 5015ef5f75d77e246b0662ad2596ad10, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -589,6 +602,18 @@ PrefabInstance:
     - target: {fileID: 8338384525504453148, guid: 5015ef5f75d77e246b0662ad2596ad10, type: 3}
       propertyPath: m_Name
       value: Tutorial UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8878265018456638114, guid: 5015ef5f75d77e246b0662ad2596ad10, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 8878265018456638114, guid: 5015ef5f75d77e246b0662ad2596ad10, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 8878265018456638114, guid: 5015ef5f75d77e246b0662ad2596ad10, type: 3}
+      propertyPath: m_margin.x
+      value: -58.925705
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8338384527073256868, guid: 5015ef5f75d77e246b0662ad2596ad10, type: 3}
@@ -1360,6 +1385,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd2283d983bbacd4a8f8de686eeadf46, type: 3}
+--- !u!114 &1578242744 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4962806636137391692, guid: 5554266676ce629418c58daa1ea43e6f, type: 3}
+  m_PrefabInstance: {fileID: 4962806635430631403}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8284080ff3a3e8f459897f2602601d6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!198 &1641239297 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 19800006, guid: 8fc06027b01064e4f885fd8dd2929310, type: 3}
+  m_PrefabInstance: {fileID: 518062593}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1736185916
 GameObject:
   m_ObjectHideFlags: 0
@@ -1372,7 +1413,7 @@ GameObject:
   - component: {fileID: 1736185917}
   m_Layer: 0
   m_Name: BoxManager
-  m_TagString: Untagged
+  m_TagString: BoxManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1390,6 +1431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxPrefab: {fileID: 2970342699870805520, guid: a854182058eb0e24a841ce5248160fd4, type: 3}
+  level: {fileID: 1578242744}
   spawnLocations:
   - {fileID: 1206186683}
   - {fileID: 1400283871}
@@ -1398,6 +1440,7 @@ MonoBehaviour:
   - {fileID: 527416445}
   - {fileID: 1743013446}
   - {fileID: 975408939}
+  boxesActive: 0
 --- !u!4 &1736185918
 Transform:
   m_ObjectHideFlags: 0
@@ -1442,6 +1485,11 @@ Transform:
   m_Father: {fileID: 1238932354}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!198 &1777943353 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 19800000, guid: 83cd9cc9f9c88824ba18dc59b05ae328, type: 3}
+  m_PrefabInstance: {fileID: 2005995478}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1824548116
 GameObject:
   m_ObjectHideFlags: 0
@@ -1722,9 +1770,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3809129678426328991, guid: 7a4b7ac69a081c84992bdbbdbe0c8eb1, type: 3}
+      propertyPath: winParticle
+      value: 
+      objectReference: {fileID: 407162981}
+    - target: {fileID: 3809129678426328991, guid: 7a4b7ac69a081c84992bdbbdbe0c8eb1, type: 3}
       propertyPath: loseParticle
       value: 
       objectReference: {fileID: 1353010212}
+    - target: {fileID: 3809129678426328991, guid: 7a4b7ac69a081c84992bdbbdbe0c8eb1, type: 3}
+      propertyPath: correctParticle
+      value: 
+      objectReference: {fileID: 1641239297}
+    - target: {fileID: 3809129678426328991, guid: 7a4b7ac69a081c84992bdbbdbe0c8eb1, type: 3}
+      propertyPath: incorrectParticle
+      value: 
+      objectReference: {fileID: 1777943353}
     - target: {fileID: 3809129678426329058, guid: 7a4b7ac69a081c84992bdbbdbe0c8eb1, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -1788,10 +1848,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4962806636137391692, guid: 5554266676ce629418c58daa1ea43e6f, type: 3}
       propertyPath: maxScore
-      value: 5
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962806636137391692, guid: 5554266676ce629418c58daa1ea43e6f, type: 3}
+      propertyPath: maxBoxes
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962806636137391692, guid: 5554266676ce629418c58daa1ea43e6f, type: 3}
+      propertyPath: minItems
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962806636137391692, guid: 5554266676ce629418c58daa1ea43e6f, type: 3}
+      propertyPath: maxItems
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962806636137391692, guid: 5554266676ce629418c58daa1ea43e6f, type: 3}
+      propertyPath: levelTime
+      value: 999
       objectReference: {fileID: 0}
     - target: {fileID: 4962806636137391693, guid: 5554266676ce629418c58daa1ea43e6f, type: 3}
       propertyPath: m_Name
+      value: Level
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962806636137391693, guid: 5554266676ce629418c58daa1ea43e6f, type: 3}
+      propertyPath: m_TagString
       value: Level
       objectReference: {fileID: 0}
     m_RemovedComponents: []

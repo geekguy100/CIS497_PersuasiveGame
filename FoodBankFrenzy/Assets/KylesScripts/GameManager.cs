@@ -62,10 +62,10 @@ public class GameManager : Singleton<GameManager>
             //Uncommenting the below code will make the game end upon achieving the max score.
 
             //If the game has been won, make sure to update GameOver as well.
-            //if (gameWon)
-            //{
-            //    GameOver = true;
-            //}
+            if (gameWon)
+            {
+                GameOver = true;
+            }
         }
     }
     public bool GameOver
@@ -155,6 +155,7 @@ public class GameManager : Singleton<GameManager>
         {
             SetupLevel();
         }
+        //SetupLevel();
     }
 
     /// <summary>
