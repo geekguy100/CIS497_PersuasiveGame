@@ -47,7 +47,7 @@ public class BoxManager : MonoBehaviour
         //Get the next available location.
         for (i = 0; i < spawnLocations.Length; ++i)
         {
-            if (locationsAvailable[i] && boxesActive < level.MaxScore)//MaxBoxes)
+            if (locationsAvailable[i]) //&& boxesActive < level.MaxScore)
                 break;
         }
 
@@ -94,10 +94,10 @@ public class BoxManager : MonoBehaviour
     public void OnBoxFinish(BoxBehaviour box)
     {
         GameManager.Instance.level.Score++;
+        boxesActive--;
         locationsAvailable[box.ID] = true;
-
         box.Close();
-        GameManager.Instance.audSrc.PlayOneShot(GameManager.Instance.complete, 0.2f);
+        GameManager.Instance.audSrc.PlayOneShot(GameManager.Instance.complete, 1f);
         //TODO: Tween the box off screen. For now I'm just destroying it.
         Destroy(box.gameObject, 1f);
 

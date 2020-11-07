@@ -88,6 +88,7 @@ public class GameManager : Singleton<GameManager>
                 audSrc.PlayOneShot(lose);
                 loseParticle.Play();
             }
+            
         }
     }
 
@@ -109,6 +110,7 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         audSrc.PlayOneShot(bgMusic);
+        SetupLevel();
     }
 
     /// <summary>
@@ -146,16 +148,22 @@ public class GameManager : Singleton<GameManager>
             StartLevel();
         }
 
-        //Debugging purposes
-        if (Input.GetKeyDown(KeyCode.Return) && levelStarted)
+        if (boxManager.boxesActive < level.MaxBoxes && !gameOver)
+        {
             SpawnBox();
+        }
+
+        //Debugging purposes
+        //if (Input.GetKeyDown(KeyCode.Return) && levelStarted)
+        //{
+        //    SpawnBox();
+        //}
 
         //Debugging Purposes:
-        if (Input.GetKeyDown(KeyCode.Q) && !levelSetup)
-        {
-            SetupLevel();
-        }
-        //SetupLevel();
+        //if (Input.GetKeyDown(KeyCode.Q) && !levelSetup)
+        //{
+        //    SetupLevel();
+        //}
     }
 
     /// <summary>
@@ -187,6 +195,7 @@ public class GameManager : Singleton<GameManager>
     {
         levelStarted = true;
         uiManager.UpdateGameStatusText(string.Empty);
+        SpawnBox();
         timer.BeginCountdown();
     }
 
@@ -202,4 +211,5 @@ public class GameManager : Singleton<GameManager>
 
         boxManager.InstantiateBox(level.MinItems, level.MaxItems );
     }
+    
 }

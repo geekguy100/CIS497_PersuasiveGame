@@ -49,8 +49,14 @@ public class BoxBehaviour : MonoBehaviour
         SetupRequiredContents();
     }
 
-
-
+    private void Update()
+    {
+        if (itemCount == 0)
+        {
+            boxManager.OnBoxFinish(this);
+            itemCount = -1;
+        }
+    }
 
     private void SetupRequiredContents()
     {
@@ -122,23 +128,19 @@ public class BoxBehaviour : MonoBehaviour
             //Only decrement from the UIItemContainer if we still need items of that type.
             if (container.ItemType == item.ItemType && container.Count > 0)
             {
-                //GameManager.Instance.correctParticle.transform.position = item.transform.position;
-                //GameManager.Instance.correctParticle.Play();
+                GameManager.Instance.correctParticle.transform.position = this.transform.position;
+                GameManager.Instance.correctParticle.Play();
                 GameManager.Instance.audSrc.PlayOneShot(GameManager.Instance.correct, 0.2f);
                 container.Count--;
+                itemCount--;
                 Destroy(item.gameObject);
-
-                if (container.Count == 0)
-                {
-                    boxManager.OnBoxFinish(this);
-                }
 
                 return true;
             }
         }
         //Incorrect item
-        //GameManager.Instance.correctParticle.transform.position = item.transform.position;
-        //GameManager.Instance.incorrectParticle.Play();
+        GameManager.Instance.incorrectParticle.transform.position = this.transform.position;
+        GameManager.Instance.incorrectParticle.Play();
         GameManager.Instance.audSrc.PlayOneShot(GameManager.Instance.incorrect, 0.2f);
         Destroy(item.gameObject);
         return false;

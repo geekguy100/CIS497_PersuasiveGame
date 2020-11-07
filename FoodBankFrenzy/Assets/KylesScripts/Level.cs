@@ -14,8 +14,10 @@ public class Level : MonoBehaviour
 
     //The score required to win the level.
     [SerializeField] private int maxScore = 0;
+    [SerializeField] private int maxBoxes = 0;
     public int MaxScore { get { return maxScore; } }
-    private int score;
+    public int MaxBoxes { get { return maxBoxes; } }
+    public int score;
     public int Score
     {
         get { return score; }
@@ -51,10 +53,4 @@ public class Level : MonoBehaviour
     
     }
     
-    //[SerializeField] private int maxBoxes = 3;
-    //public int MaxBoxes
-    //{
-    //    get
-    //    { return maxBoxes; }
-    //}
 }
