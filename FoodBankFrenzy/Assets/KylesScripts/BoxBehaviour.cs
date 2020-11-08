@@ -27,6 +27,8 @@ public class BoxBehaviour : MonoBehaviour
 
     private GameObject canvas;
     private BoxManager boxManager;
+
+    private Item itemOnBox = null;
     
 
     //The UIItemContainers used to display box contents.
@@ -53,8 +55,8 @@ public class BoxBehaviour : MonoBehaviour
     {
         if (itemCount == 0)
         {
-            boxManager.OnBoxFinish(this);
             itemCount = -1;
+            boxManager.OnBoxFinish(this);
         }
     }
 
@@ -128,24 +130,28 @@ public class BoxBehaviour : MonoBehaviour
             //Only decrement from the UIItemContainer if we still need items of that type.
             if (container.ItemType == item.ItemType && container.Count > 0)
             {
-                GameManager.Instance.correctParticle.transform.position = this.transform.position;
-                GameManager.Instance.correctParticle.Play();
+                //GameManager.Instance.correctParticle.transform.position = transform.position;
+                //GameManager.Instance.correctParticle.Play();
                 GameManager.Instance.audSrc.PlayOneShot(GameManager.Instance.correct, 0.2f);
                 container.Count--;
                 itemCount--;
+
                 Destroy(item.gameObject);
 
                 return true;
             }
         }
+
+
         //Incorrect item
-        GameManager.Instance.incorrectParticle.transform.position = this.transform.position;
-        GameManager.Instance.incorrectParticle.Play();
+        //GameManager.Instance.incorrectParticle.transform.position = transform.position;
+        //GameManager.Instance.incorrectParticle.Play();
         GameManager.Instance.audSrc.PlayOneShot(GameManager.Instance.incorrect, 0.2f);
         Destroy(item.gameObject);
         return false;
-        //TODO: Destroy the item we tried to place! Similar to dropping an item on the floor.
+
         //Maybe use layers for the box trigger so we can keep track of what exactly the box can and cannot accept?
+        //So we'd have layers for all the different types of cans.
     }
 
     public void Open()
@@ -161,20 +167,38 @@ public class BoxBehaviour : MonoBehaviour
     }
 
     /// <summary>
-    /// Checks to see if the correct item was placed in the box.
-    /// If so, decrement the box item count.
+    /// IF an Item entered the trigger, updated itemOnBox to true.
     /// </summary>
     /// <param name="col">The Collider2D entering the trigger.</param>
-    private void OnTriggerStay2D(Collider2D col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        //Must left click to drop item
         if (col.CompareTag("Item"))
         {
-            if (Input.GetButtonDown("Fire1"))
-            {
-            Item item = col.GetComponent<Item>();
-            RemoveItem(item);
-            }
+            itemOnBox = col.GetComponent<Item>();
         }
     }
+
+    /// <summary>
+    /// If an item exited the trigger, update itemOnBox to false.
+    /// </summary>
+    /// <param name="col">The Collider2D exiting the trigger.</param>
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.CompareTag("Item"))
+        {
+            itemOnBox = null;
+            print("Item left");
+        }
+    }
+
+    /// <summary>
+    /// If mouse down and itemOnBox, accept the item (put it into the box).
+    /// </summary>
+    private void OnMouseDown()
+    {
+        if (itemOnBox)
+            RemoveItem(itemOnBox);
+    }
+
+
 }

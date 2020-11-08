@@ -37,7 +37,6 @@ public class GameManager : Singleton<GameManager>
 
     //Audio vars
     public AudioSource audSrc;
-    public AudioClip bgMusic;
     public AudioClip win;
     public AudioClip lose;
     public AudioClip correct;
@@ -58,8 +57,6 @@ public class GameManager : Singleton<GameManager>
         set
         {
             gameWon = value;
-
-            //Uncommenting the below code will make the game end upon achieving the max score.
 
             //If the game has been won, make sure to update GameOver as well.
             if (gameWon)
@@ -109,7 +106,6 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        audSrc.PlayOneShot(bgMusic);
         SetupLevel();
     }
 
@@ -124,7 +120,7 @@ public class GameManager : Singleton<GameManager>
         //If there is no level found, we're on a menu scene.
         if (level == null)
         {
-            print("[GameManager]: Level data could not be found. Missing prefab?");
+            print("[GameManager]: Level data could not be found.");
             return;
         }
 
@@ -148,7 +144,7 @@ public class GameManager : Singleton<GameManager>
             StartLevel();
         }
 
-        if (boxManager.boxesActive < level.MaxBoxes && !gameOver)
+        if (levelStarted && boxManager.boxesActive < level.MaxBoxes && !gameOver)
         {
             SpawnBox();
         }
@@ -189,7 +185,7 @@ public class GameManager : Singleton<GameManager>
     }
 
     /// <summary>
-    /// Begin a level by waiting 3 seconds then starting the timer.
+    /// Begin the level.
     /// </summary>
     private void StartLevel()
     {

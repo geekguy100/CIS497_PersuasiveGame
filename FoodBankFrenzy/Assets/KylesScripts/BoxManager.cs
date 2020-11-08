@@ -96,15 +96,32 @@ public class BoxManager : MonoBehaviour
         GameManager.Instance.level.Score++;
         boxesActive--;
         locationsAvailable[box.ID] = true;
+
         box.Close();
         GameManager.Instance.audSrc.PlayOneShot(GameManager.Instance.complete, 1f);
-        //TODO: Tween the box off screen. For now I'm just destroying it.
-        Destroy(box.gameObject, 1f);
+
+        //Tween box off screen; tween up by 10 units.
+        iTween.MoveBy(box.gameObject, iTween.Hash
+            ("amount", Vector3.up * 5f, 
+            "time", 2f, 
+            "easetype", "easeOutExpo",
+            "oncompletetarget", gameObject,
+            "oncompleteparams", box.gameObject, 
+            "oncomplete", "DestroyBox"));
 
         if (waitingBoxes > 0)
         {
             --waitingBoxes;
             GameManager.Instance.SpawnBox();
         }
+    }
+
+    /// <summary>
+    /// Used as a callback function. Executes after the box tweens off screen.
+    /// </summary>
+    /// <param name="box">The box to destroy.</param>
+    private void DestroyBox(GameObject box)
+    {
+        Destroy(box);
     }
 }
