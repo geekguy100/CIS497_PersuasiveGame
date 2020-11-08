@@ -130,8 +130,8 @@ public class BoxBehaviour : MonoBehaviour
             //Only decrement from the UIItemContainer if we still need items of that type.
             if (container.ItemType == item.ItemType && container.Count > 0)
             {
-                //GameManager.Instance.correctParticle.transform.position = transform.position;
-                //GameManager.Instance.correctParticle.Play();
+                GameManager.Instance.SpawnParticle("correct", transform.position);
+
                 GameManager.Instance.audSrc.PlayOneShot(GameManager.Instance.correct, 0.2f);
                 container.Count--;
                 itemCount--;
@@ -144,8 +144,7 @@ public class BoxBehaviour : MonoBehaviour
 
 
         //Incorrect item
-        //GameManager.Instance.incorrectParticle.transform.position = transform.position;
-        //GameManager.Instance.incorrectParticle.Play();
+        GameManager.Instance.SpawnParticle("incorrect", transform.position);
         GameManager.Instance.audSrc.PlayOneShot(GameManager.Instance.incorrect, 0.2f);
         Destroy(item.gameObject);
         return false;
@@ -187,7 +186,6 @@ public class BoxBehaviour : MonoBehaviour
         if (col.CompareTag("Item"))
         {
             itemOnBox = null;
-            print("Item left");
         }
     }
 

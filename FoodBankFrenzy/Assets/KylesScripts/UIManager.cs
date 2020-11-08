@@ -32,7 +32,7 @@ public class UIManager : MonoBehaviour
     public void SetupLevel(Level l)
     {
         UpdateTimerText(0);
-        UpdateNumBoxesText(l.MaxScore);
+        UpdateNumBoxesText(l.MaxBoxes);
         UpdateGameStatusText("Press any key to start.");
     }
 }

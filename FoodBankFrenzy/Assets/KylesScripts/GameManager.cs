@@ -24,6 +24,7 @@ public class GameManager : Singleton<GameManager>
 
     //The current level in play.
     private int currentLevel = 0;
+
     //True if play of the current level has begun.
     public bool levelStarted = false;
     private bool levelSetup = false;
@@ -76,14 +77,14 @@ public class GameManager : Singleton<GameManager>
                 //The game has been won.
                 uiManager.UpdateGameStatusText("You win!");
                 audSrc.PlayOneShot(win);
-                winParticle.Play();
+                SpawnParticle("win", Vector2.zero);
             }
             else if (gameOver)
             {
                 //The game is over and has been lost.
                 uiManager.UpdateGameStatusText("You lose!");
                 audSrc.PlayOneShot(lose);
-                loseParticle.Play();
+                SpawnParticle("lose", Vector2.zero);
             }
             
         }
@@ -132,7 +133,9 @@ public class GameManager : Singleton<GameManager>
             uiManager = FindObjectOfType<UIManager>();
 
         uiManager.SetupLevel(level);
+
         boxManager = FindObjectOfType<BoxManager>();
+        boxManager.Setup();
 
         levelSetup = true;
     }
@@ -144,16 +147,11 @@ public class GameManager : Singleton<GameManager>
             StartLevel();
         }
 
-        if (levelStarted && boxManager.boxesActive < level.MaxBoxes && !gameOver)
+        //Debugging purposes
+        if (Input.GetKeyDown(KeyCode.Return) && levelStarted)
         {
             SpawnBox();
         }
-
-        //Debugging purposes
-        //if (Input.GetKeyDown(KeyCode.Return) && levelStarted)
-        //{
-        //    SpawnBox();
-        //}
 
         //Debugging Purposes:
         //if (Input.GetKeyDown(KeyCode.Q) && !levelSetup)
@@ -173,6 +171,12 @@ public class GameManager : Singleton<GameManager>
     private IEnumerator LoadLevelEnumerator(int level)
     {
         currentLevel = level;
+
+        //Make sure to reset all level-related variables before loading into the next one,
+        //or else the level will automatically start!
+        levelSetup = false;
+        levelStarted = false;
+
         AsyncOperation ao = SceneManager.LoadSceneAsync(level, LoadSceneMode.Single);
         while(!ao.isDone)
         {
@@ -191,7 +195,14 @@ public class GameManager : Singleton<GameManager>
     {
         levelStarted = true;
         uiManager.UpdateGameStatusText(string.Empty);
-        SpawnBox();
+
+        //Spawn boxes at lvl start.
+        for (int i = 0; i < level.MaxBoxes; ++i)
+        {
+            print("Spawning box " + (i+1));
+            SpawnBox();
+        }
+
         timer.BeginCountdown();
     }
 
@@ -206,6 +217,38 @@ public class GameManager : Singleton<GameManager>
         }
 
         boxManager.InstantiateBox(level.MinItems, level.MaxItems );
+    }
+
+    /// <summary>
+    /// Spawns particle of type.
+    /// </summary>
+    /// <param name="particleType">The type of particle to spawn.</param>
+    /// <param name="pos">Position of instantiation.</param>
+    public void SpawnParticle(string particleType, Vector3 pos)
+    {
+        ParticleSystem particle = null;
+        switch(particleType)
+        {
+            case "correct":
+                particle = correctParticle;
+                break;
+            case "incorrect":
+                particle = incorrectParticle;
+                break;
+            case "win":
+                particle = winParticle;
+                break;
+            case "lose":
+                particle = loseParticle;
+                break;
+            default:
+                Debug.LogWarning("Particle type \'" + particleType + "\' not found!");
+                return;
+        }
+
+        particle = Instantiate(particle, pos, particle.transform.rotation);
+        particle.Play();
+        Destroy(particle.gameObject, 1f);
     }
     
 }

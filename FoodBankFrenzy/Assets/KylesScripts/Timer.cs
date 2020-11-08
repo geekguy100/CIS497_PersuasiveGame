@@ -42,11 +42,11 @@ public class Timer : MonoBehaviour
     /// </summary>
     private void Countdown()
     {
+        if (GameManager.Instance.GameOver)
+            countingDown = false;
+
         time -= Time.deltaTime;
         GameManager.Instance.uiManager.UpdateTimerText(time);
-
-        //if (time <= 5)
-        //    audSrc.PlayOneShot(timeLow, 0.2f);
 
         if (time <= 0)
         {

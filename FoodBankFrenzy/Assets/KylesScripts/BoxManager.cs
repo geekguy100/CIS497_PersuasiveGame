@@ -23,16 +23,25 @@ public class BoxManager : MonoBehaviour
     //The boxes on standby that want to be spawned but cannot be.
     private int waitingBoxes = 0;
 
-    private void Awake()
+    private int usableLocations = 3;
+
+    public void Setup()
     {
+        usableLocations = GameManager.Instance.level.BoxHoldersInUse;
         locationsAvailable = new bool[spawnLocations.Length];
+
+        if (spawnLocations.Length != finalLocations.Length)
+            Debug.LogWarning("[BoxManager]: The spawnLocations and finalLocations are not of equal length! Using number of spawnLocations = " + spawnLocations.Length);
+
+        if (usableLocations > spawnLocations.Length)
+        {
+            Debug.LogWarning("[BoxManager]: Level wants to use more box holders than we have available. Defaulting to num of spawnLocations = " + spawnLocations.Length);
+            usableLocations = spawnLocations.Length;
+        }
 
         //Set all locations to available.
         for (int i = 0; i < locationsAvailable.Length; ++i)
             locationsAvailable[i] = true;
-
-        if (spawnLocations.Length != finalLocations.Length)
-            Debug.LogWarning("[BoxManager]: The spawnLocations and finalLocations are not of equal length!");
     }
 
     /// <summary>
@@ -45,7 +54,7 @@ public class BoxManager : MonoBehaviour
         int i;
 
         //Get the next available location.
-        for (i = 0; i < spawnLocations.Length; ++i)
+        for (i = 0; i < usableLocations; ++i)
         {
             if (locationsAvailable[i]) //&& boxesActive < level.MaxScore)
                 break;
@@ -53,7 +62,7 @@ public class BoxManager : MonoBehaviour
 
         //There are currently no available spots for the box to spawn at.
         //Update counter.
-        if (i >= spawnLocations.Length)
+        if (i >= usableLocations)
         {
             print("[BoxManager]: All available positions are full. Increasing waiting count.");
 

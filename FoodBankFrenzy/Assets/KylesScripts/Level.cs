@@ -13,9 +13,8 @@ public class Level : MonoBehaviour
     public bool IsTutorial { get { return tutorial; } }
 
     //The score required to win the level.
-    [SerializeField] private int maxScore = 0;
     [SerializeField] private int maxBoxes = 0;
-    public int MaxScore { get { return maxScore; } }
+
     public int MaxBoxes { get { return maxBoxes; } }
     public int score;
     public int Score
@@ -24,14 +23,17 @@ public class Level : MonoBehaviour
         set
         {
             ++score;
-            GameManager.Instance.uiManager.UpdateNumBoxesText(maxScore - score);
+            GameManager.Instance.uiManager.UpdateNumBoxesText(maxBoxes - score);
 
-            if (score >= maxScore)
+            if (score >= maxBoxes)
             {
                 GameManager.Instance.GameWon = true;
             }
         }
     }
+
+    [SerializeField] private int boxHoldersInUse = 3;
+    public int BoxHoldersInUse { get { return boxHoldersInUse; } }
 
     //The time of the currently loaded level.
     [SerializeField] private float levelTime = 60f;

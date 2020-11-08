@@ -49,6 +49,7 @@ MonoBehaviour:
   - {fileID: 7614858095853305324, guid: 300ff5bf08eec184582a2da949c58450, type: 3}
   - {fileID: 929971970005705269, guid: aa0a32ce7618fa141a1a678bf665372a, type: 3}
   yMax: -0.85
-  yMin: 0.1
+  yMin: -0.44
   delay: 1
   rate: 1
+  isStarted: 0
