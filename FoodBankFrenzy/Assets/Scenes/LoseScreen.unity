@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99433443134729b4a9eb6e74274251f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelLost: 1
 --- !u!114 &180742339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,7 +339,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Go To Main Menu
+  m_Text: Play Level Again
 --- !u!222 &365115074
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1213,6 +1214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99433443134729b4a9eb6e74274251f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelLost: 0
 --- !u!114 &1732361945
 MonoBehaviour:
   m_ObjectHideFlags: 0
