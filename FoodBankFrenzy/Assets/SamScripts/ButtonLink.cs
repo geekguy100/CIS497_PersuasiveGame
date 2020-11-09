@@ -12,6 +12,6 @@ public class ButtonLink : MonoBehaviour
 
     public void BackToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        GameManager.Instance.LoadLevel(0);
     }
 }
