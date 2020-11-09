@@ -24,6 +24,8 @@ public class GameManager : Singleton<GameManager>
 
     //The current level in play.
     private int currentLevel = 0;
+    private int previousLevel = 0;
+    public int PreviousLevel { get { return previousLevel; } }
 
     //True if play of the current level has begun.
     public bool levelStarted = false;
@@ -189,6 +191,7 @@ public class GameManager : Singleton<GameManager>
     private IEnumerator LoadLevelEnumerator(int level)
     {
         timer.Stop();
+        previousLevel = currentLevel;
         currentLevel = level;
 
         //Start the fade animation.
