@@ -315,6 +315,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0.00002780645
       objectReference: {fileID: 0}
+    - target: {fileID: 4111961404732898817, guid: 166036ee283ee7849a9abed981f21d1d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ae348f9643dbb094ea3eae996fa1be7b, type: 3}
+    - target: {fileID: 4111961404732898817, guid: 166036ee283ee7849a9abed981f21d1d, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962548445357619374, guid: 166036ee283ee7849a9abed981f21d1d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8338384525504453144, guid: 166036ee283ee7849a9abed981f21d1d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -399,9 +411,13 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8338384525504453145, guid: 166036ee283ee7849a9abed981f21d1d, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 8338384525504453148, guid: 166036ee283ee7849a9abed981f21d1d, type: 3}
       propertyPath: m_Name
-      value: InGameUI (1)
+      value: InGameUI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 166036ee283ee7849a9abed981f21d1d, type: 3}
