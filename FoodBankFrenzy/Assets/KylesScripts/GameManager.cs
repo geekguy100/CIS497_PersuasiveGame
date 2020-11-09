@@ -78,6 +78,7 @@ public class GameManager : Singleton<GameManager>
                 uiManager.UpdateGameStatusText("You win!");
                 audSrc.PlayOneShot(win);
                 SpawnParticle("win", Vector2.zero);
+                StartCoroutine(LoadLevelAfterGame(true));
             }
             else if (gameOver)
             {
@@ -85,6 +86,7 @@ public class GameManager : Singleton<GameManager>
                 uiManager.UpdateGameStatusText("You lose!");
                 audSrc.PlayOneShot(lose);
                 SpawnParticle("lose", Vector2.zero);
+                StartCoroutine(LoadLevelAfterGame(false));
             }
             
         }
@@ -99,7 +101,6 @@ public class GameManager : Singleton<GameManager>
 
         //Get required components
         timer = GetComponent<Timer>();
-        uiManager = GetComponent<UIManager>();
         audSrc = GetComponent<AudioSource>();
 
         Cursor.SetCursor(cursorTex, Vector2.zero, cursorMode);
@@ -124,6 +125,13 @@ public class GameManager : Singleton<GameManager>
             print("[GameManager]: Level data could not be found.");
             return;
         }
+
+        //Make sure to reset all level-related variables before loading into the next one,
+        //or else the level will automatically start!
+        levelSetup = false;
+        levelStarted = false;
+        gameOver = false;
+        gameWon = false;
 
         timer.time = level.LevelTime;
 
@@ -168,14 +176,24 @@ public class GameManager : Singleton<GameManager>
         StartCoroutine(LoadLevelEnumerator(level));
     }
 
+    private IEnumerator LoadLevelAfterGame(bool gameWon)
+    {
+        yield return new WaitForSeconds(2f);
+
+        if (gameWon)
+            LoadLevel(8);
+        else
+            LoadLevel(9);
+    }
+
     private IEnumerator LoadLevelEnumerator(int level)
     {
+        timer.Stop();
         currentLevel = level;
 
-        //Make sure to reset all level-related variables before loading into the next one,
-        //or else the level will automatically start!
-        levelSetup = false;
-        levelStarted = false;
+        //Start the fade animation.
+        GameObject.FindGameObjectWithTag("Crossfader").GetComponent<Animator>().SetTrigger("Start");
+        yield return new WaitForSeconds(1f);
 
         AsyncOperation ao = SceneManager.LoadSceneAsync(level, LoadSceneMode.Single);
         while(!ao.isDone)

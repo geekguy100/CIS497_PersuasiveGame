@@ -43,15 +43,23 @@ public class Timer : MonoBehaviour
     private void Countdown()
     {
         if (GameManager.Instance.GameOver)
-            countingDown = false;
+        {
+            print("Timer :: Game is over???");
+            Stop();
+        }
 
         time -= Time.deltaTime;
         GameManager.Instance.uiManager.UpdateTimerText(time);
 
         if (time <= 0)
         {
-            countingDown = false;
+            Stop();
             GameManager.Instance.GameOver = true;
         }
+    }
+
+    public void Stop()
+    {
+        countingDown = false;
     }
 }

@@ -14,6 +14,7 @@ TagManager:
   - Item
   - Level
   - BoxManager
+  - Crossfader
   layers:
   - Default
   - TransparentFX
