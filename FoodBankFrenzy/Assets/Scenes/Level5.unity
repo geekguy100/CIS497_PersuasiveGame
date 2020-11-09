@@ -289,6 +289,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7487193595057587835, guid: 6d9912773e5b5a646954c82b28a86209, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d9912773e5b5a646954c82b28a86209, type: 3}
 --- !u!1001 &349457291
@@ -572,19 +576,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4962806636137391692, guid: 5554266676ce629418c58daa1ea43e6f, type: 3}
       propertyPath: maxBoxes
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4962806636137391692, guid: 5554266676ce629418c58daa1ea43e6f, type: 3}
       propertyPath: minItems
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4962806636137391692, guid: 5554266676ce629418c58daa1ea43e6f, type: 3}
       propertyPath: maxItems
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4962806636137391692, guid: 5554266676ce629418c58daa1ea43e6f, type: 3}
       propertyPath: levelTime
-      value: 225
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 4962806636137391693, guid: 5554266676ce629418c58daa1ea43e6f, type: 3}
       propertyPath: m_Name

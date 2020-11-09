@@ -450,7 +450,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4962806636137391692, guid: 5554266676ce629418c58daa1ea43e6f, type: 3}
       propertyPath: levelTime
-      value: 45
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4962806636137391692, guid: 5554266676ce629418c58daa1ea43e6f, type: 3}
       propertyPath: boxHoldersInUse
@@ -1127,6 +1127,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1141424138372281555, guid: 5015ef5f75d77e246b0662ad2596ad10, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141424138372281555, guid: 5015ef5f75d77e246b0662ad2596ad10, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7115669196396404253, guid: 5015ef5f75d77e246b0662ad2596ad10, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7115669196396404253, guid: 5015ef5f75d77e246b0662ad2596ad10, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7835910116366320035, guid: 5015ef5f75d77e246b0662ad2596ad10, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 73.2

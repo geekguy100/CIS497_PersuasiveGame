@@ -16,7 +16,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private GameObject gameUI;
 
     //The timer object to keep track of game time.
-    private Timer timer;
+    public Timer timer;
 
     //The UIManager to update UI.
     public UIManager uiManager { get; private set; }

@@ -146,6 +146,7 @@ public class BoxBehaviour : MonoBehaviour
         //Incorrect item
         GameManager.Instance.SpawnParticle("incorrect", transform.position);
         GameManager.Instance.audSrc.PlayOneShot(GameManager.Instance.incorrect, 0.2f);
+        GameManager.Instance.timer.time -= 2f;
         Destroy(item.gameObject);
         return false;
 
