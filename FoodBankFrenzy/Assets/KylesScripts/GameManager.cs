@@ -26,6 +26,7 @@ public class GameManager : Singleton<GameManager>
     private int currentLevel = 0;
     private int previousLevel = 0;
     public int PreviousLevel { get { return previousLevel; } }
+    public int nextLevel = -1; //Used to keep track of which scene to load after playing the InterGameplayScene.
 
     //True if play of the current level has begun.
     public bool levelStarted = false;
@@ -158,30 +159,19 @@ public class GameManager : Singleton<GameManager>
         {
             StartLevel();
         }
-
-        //Debugging purposes
-        if (Input.GetKeyDown(KeyCode.Return) && levelStarted)
-        {
-            SpawnBox();
-        }
-
-        //Debugging Purposes:
-        //if (Input.GetKeyDown(KeyCode.Q) && !levelSetup)
-        //{
-        //    SetupLevel();
-        //}
     }
 
     /// <summary>
     /// Loads the next level to be played.
     /// </summary>
-    public void LoadLevel(int level)
+    public void LoadLevel(int level, bool loadInterScene = false)
     {
-        StartCoroutine(LoadLevelEnumerator(level));
+        StartCoroutine(LoadLevelEnumerator(level, loadInterScene));
     }
 
     private IEnumerator LoadLevelAfterGame(bool gameWon)
     {
+        previousLevel = currentLevel;
         yield return new WaitForSeconds(2f);
 
         if (gameWon)
@@ -190,17 +180,23 @@ public class GameManager : Singleton<GameManager>
             LoadLevel(9);
     }
 
-    private IEnumerator LoadLevelEnumerator(int level)
+    private IEnumerator LoadLevelEnumerator(int level, bool loadInterScene)
     {
         timer.Stop();
-        previousLevel = currentLevel;
         currentLevel = level;
+
+        //Only load the InterGameplayScene between playable levels.
+        if (loadInterScene)
+        {
+            nextLevel = currentLevel;
+            currentLevel = 10;
+        }
 
         //Start the fade animation.
         GameObject.FindGameObjectWithTag("Crossfader").GetComponent<Animator>().SetTrigger("Start");
         yield return new WaitForSeconds(1f);
 
-        AsyncOperation ao = SceneManager.LoadSceneAsync(level, LoadSceneMode.Single);
+        AsyncOperation ao = SceneManager.LoadSceneAsync(currentLevel, LoadSceneMode.Single);
         while(!ao.isDone)
         {
             print("Level Loading...");

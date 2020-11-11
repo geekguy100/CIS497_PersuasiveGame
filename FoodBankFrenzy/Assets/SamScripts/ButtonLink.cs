@@ -26,6 +26,6 @@ public class ButtonLink : MonoBehaviour
         if (GameManager.Instance.PreviousLevel + 1 > 7)
             GameManager.Instance.LoadLevel(0);
         else
-            GameManager.Instance.LoadLevel(GameManager.Instance.PreviousLevel + 1);
+            GameManager.Instance.LoadLevel(GameManager.Instance.PreviousLevel + 1, true);
     }
 }
