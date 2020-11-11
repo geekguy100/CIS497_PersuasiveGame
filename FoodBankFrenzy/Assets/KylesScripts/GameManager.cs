@@ -110,6 +110,8 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
+        //Loads the current; useful for testing and NOT starting from the main menu scene.
+        currentLevel = SceneManager.GetActiveScene().buildIndex;
         SetupLevel();
     }
 

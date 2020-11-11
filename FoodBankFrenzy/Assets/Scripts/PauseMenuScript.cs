@@ -1,4 +1,4 @@
-﻿/*
+/*
 Name: Chandler Wesoloski
 Script: Pause Menu Script
 Description: Sets the Pause menu to the Screen and the Button Functionality
@@ -48,7 +48,7 @@ public class PauseMenuScript : MonoBehaviour
     {
         //Sets the timescale back to default and goes back to the main menu Scene
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
+        GameManager.Instance.LoadLevel(1);
     }
 
     private void Pause()
