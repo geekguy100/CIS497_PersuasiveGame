@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿/* Frank Calabrese
+ * We aren't using this anymore
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

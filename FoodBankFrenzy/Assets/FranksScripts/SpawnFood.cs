@@ -1,3 +1,9 @@
+/* Frank Calabrese
+ * Spawns food prefabs
+ * randomly on top of
+ * conveyor belt
+ */
+
 using UnityEngine;
 
 public class SpawnFood : MonoBehaviour
