@@ -847,7 +847,8 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "In the United States, 1 in 9 people struggles with hunger (FeedingAmerica.org).\nDo
-    you have what it takes to package goods at a food bank? \nLet's find out!"
+    you have what it takes to package goods at a food bank? \nLet's find out!\n\n\n(Press
+    any key to continue...)"
 --- !u!222 &1730607983
 CanvasRenderer:
   m_ObjectHideFlags: 0

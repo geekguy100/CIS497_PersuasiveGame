@@ -6,21 +6,16 @@
 // Brief Description : Waits and then loads the nextLevel in the GameManager.
 *****************************************************************************/
 using UnityEngine;
-using System.Collections;
 
 public class InterSceneBehaviour : MonoBehaviour
 {
-    void Start()
+    private bool transitioned = false;
+    void Update()
     {
-        StartCoroutine(WaitAndLoad());
-    }
-
-    /// <summary>
-    /// Wait some amount of time before loading the nextLevel from the GameManager.
-    /// </summary>
-    IEnumerator WaitAndLoad()
-    {
-        yield return new WaitForSeconds(5f);
-        GameManager.Instance.LoadLevel(GameManager.Instance.nextLevel);
+        if (!transitioned && Input.anyKey)
+        {
+            transitioned = true;
+            GameManager.Instance.LoadLevel(GameManager.Instance.nextLevel);
+        }
     }
 }
