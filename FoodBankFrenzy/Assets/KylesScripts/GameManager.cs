@@ -140,10 +140,12 @@ public class GameManager : Singleton<GameManager>
 
         timer.time = level.LevelTime;
 
-        if (!level.IsTutorial)
-            uiManager = Instantiate(gameUI).GetComponent<UIManager>();
-        else
-            uiManager = FindObjectOfType<UIManager>();
+        //if (!level.IsTutorial)
+        //    uiManager = Instantiate(gameUI).GetComponent<UIManager>();
+        //else
+        //    uiManager = FindObjectOfType<UIManager>();
+
+        uiManager = FindObjectOfType<UIManager>();
 
         uiManager.SetupLevel(level);
 
