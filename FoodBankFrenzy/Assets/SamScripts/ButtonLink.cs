@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class ButtonLink : MonoBehaviour
 {
     [SerializeField] private bool levelLost = false;
+    [SerializeField] private bool returnToMenu = false;
 
     public void WebsiteLink()
     {
@@ -14,6 +15,12 @@ public class ButtonLink : MonoBehaviour
 
     public void BackToMainMenu()
     {
+        if (returnToMenu)
+        {
+            GameManager.Instance.LoadLevel(1);
+            return;
+        }
+
         //Play the level again if lost.
         if (levelLost)
         {
