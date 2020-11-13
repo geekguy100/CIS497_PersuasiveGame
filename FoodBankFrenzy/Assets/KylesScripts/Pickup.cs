@@ -24,6 +24,10 @@ public class Pickup : MonoBehaviour
 
     private void Update()
     {
+        //Don't allow items to be picked up after the game has ended.
+        if (GameManager.Instance.GameOver)
+            return;
+
         //Check to see if there's an object we can pick up on mouse click if we don't have one in our hand.
         if (Input.GetButtonDown("Fire1") && objectInHand == null)
             CheckForObject();
