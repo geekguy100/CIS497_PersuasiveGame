@@ -1402,6 +1402,7 @@ GameObject:
   - component: {fileID: 1732361947}
   - component: {fileID: 1732361946}
   - component: {fileID: 1732361945}
+  - component: {fileID: 1732361948}
   - component: {fileID: 1732361944}
   m_Layer: 5
   m_Name: WebsiteButton
@@ -1439,11 +1440,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1732361942}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99433443134729b4a9eb6e74274251f6, type: 3}
+  m_Script: {fileID: 11500000, guid: a529d4595c50ce243b90d5f368caf4f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelLost: 0
-  returnToMenu: 0
 --- !u!114 &1732361945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1486,19 +1485,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1732361946}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1732361944}
-        m_TargetAssemblyTypeName: ButtonLink, Assembly-CSharp
-        m_MethodName: WebsiteLink
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1732361946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1537,6 +1524,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1732361942}
   m_CullTransparentMesh: 0
+--- !u!114 &1732361948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732361942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 293e7f328ee8a5c4d9848d3f7be56398, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnPress:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1732361944}
+        m_TargetAssemblyTypeName: Link, Assembly-CSharp
+        m_MethodName: OpenWebsiteLink
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1868093395
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,15 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/*
+ * Sam Ferstein
+ * ButtonLink.cs
+ * This is the code that lets the buttons transition from the winning and losing screen to the next level/main menu.
+ */
+
 public class ButtonLink : MonoBehaviour
 {
     [SerializeField] private bool levelLost = false;
     [SerializeField] private bool returnToMenu = false;
 
-    public void WebsiteLink()
-    {
-        Application.OpenURL("https://www.feedingamerica.org/");
-    }
+    //public void WebsiteLink()
+    //{
+    //    Application.OpenURL("https://www.feedingamerica.org/");
+    //}
 
     public void BackToMainMenu()
     {
