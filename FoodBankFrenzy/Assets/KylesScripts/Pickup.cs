@@ -24,7 +24,7 @@ public class Pickup : MonoBehaviour
 
     private void Update()
     {
-        //Don't allow items to be picked up after the game has ended.
+        //Don't allow items to be picked up, dropped, etc., after the game has ended.
         if (GameManager.Instance.GameOver)
             return;
 

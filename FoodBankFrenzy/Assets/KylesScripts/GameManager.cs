@@ -36,8 +36,8 @@ public class GameManager : Singleton<GameManager>
     public Level level { get; private set; }
 
     //cursor image
-    public Texture2D cursorTex;
-    public CursorMode cursorMode = CursorMode.Auto;
+    //public Texture2D cursorTex;
+    //public CursorMode cursorMode = CursorMode.Auto;
 
     //Audio vars
     public AudioSource audSrc;
@@ -106,7 +106,7 @@ public class GameManager : Singleton<GameManager>
         timer = GetComponent<Timer>();
         audSrc = GetComponent<AudioSource>();
 
-        Cursor.SetCursor(cursorTex, Vector2.zero, cursorMode);
+        //Cursor.SetCursor(cursorTex, Vector2.zero, cursorMode);
     }
 
     private void Start()
