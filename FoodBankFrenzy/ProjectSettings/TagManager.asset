@@ -15,6 +15,7 @@ TagManager:
   - Level
   - BoxManager
   - Crossfader
+  - MisclickDestroyer
   layers:
   - Default
   - TransparentFX
