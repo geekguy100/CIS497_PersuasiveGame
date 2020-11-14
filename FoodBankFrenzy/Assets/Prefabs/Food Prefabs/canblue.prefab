@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -2351458220376662004}
   - component: {fileID: -4343481421903885343}
   - component: {fileID: 7110060985109246192}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: canblue
   m_TagString: Item
   m_Icon: {fileID: 0}

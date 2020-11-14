@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7487193593743510918}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Conveyer Belt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 7487193595046003447}
   - component: {fileID: 7487193595046003465}
   - component: {fileID: 200196948}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: conveyorbase1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,8 +103,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1337949881
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 0177150f03e61d142a091fab3695e87c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 7487193595057587835}
   - component: {fileID: 7487193595057587834}
   - component: {fileID: 7487193595057587833}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: conveyerbelt
   m_TagString: Conveyor
   m_Icon: {fileID: 0}
@@ -221,8 +221,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1337949881
+  m_SortingLayer: 3
   m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: acc091ffa818b5b4893def396d646f08, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -319,7 +319,7 @@ GameObject:
   - component: {fileID: 7487193595213816804}
   - component: {fileID: 7487193595213816803}
   - component: {fileID: 536748985}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: conveyorbase1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -377,8 +377,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1337949881
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 0177150f03e61d142a091fab3695e87c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

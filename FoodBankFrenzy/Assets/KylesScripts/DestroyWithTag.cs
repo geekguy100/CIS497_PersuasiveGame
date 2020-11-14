@@ -10,6 +10,7 @@ using UnityEngine;
 public class DestroyWithTag : MonoBehaviour
 {
     [SerializeField] private string theTag = "";
+    private GameObject canInside = null;
     public GameObject pickUpCamera;
 
     private void Start()
@@ -19,25 +20,57 @@ public class DestroyWithTag : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+        if (col.CompareTag(theTag) && CompareTag("MisclickDestroyer"))
+        {
+            canInside = col.gameObject;
+        }
+
         if (col.CompareTag(theTag) && pickUpCamera.GetComponent<Pickup>().objectInHand != col.gameObject)
         {
             //If this game object destroys misclicked cans and is NOT the conveyor belt destroyer, play a particle effect at mouse position.
             //Adding 10 to mousePos b/c it defaults to a Z of -10.
-            if (CompareTag("MisclickDestroyer"))
-                GameManager.Instance.SpawnParticle("incorrect", Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 10));
+            //if (CompareTag("MisclickDestroyer"))
+            //{
+            //    GameManager.Instance.SpawnParticle("incorrect", Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 10));
+            //    canInside = null;
+            //}
+
             Destroy(col.gameObject);
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D col)
     {
-        if(collision.CompareTag(theTag) && pickUpCamera.GetComponent<Pickup>().objectInHand != collision.gameObject)
+        if (col.CompareTag(theTag) && CompareTag("MisclickDestroyer"))
         {
-            //If this game object destroys misclicked cans and is NOT the conveyor belt destroyer, play a particle effect at mouse position.
-            //Adding 10 to mousePos b/c it defaults to a Z of -10.
-            if (CompareTag("MisclickDestroyer"))
-                GameManager.Instance.SpawnParticle("incorrect", Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 10));
-            Destroy(collision.gameObject);
+            canInside = null;
         }
+    }
+
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag(theTag) && pickUpCamera.GetComponent<Pickup>().objectInHand != collision.gameObject)
+    //    {
+    //        //If this game object destroys misclicked cans and is NOT the conveyor belt destroyer, play a particle effect at mouse position.
+    //        //Adding 10 to mousePos b/c it defaults to a Z of -10.
+    //        if (CompareTag("MisclickDestroyer"))
+    //        {
+    //            GameManager.Instance.SpawnParticle("incorrect", Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 10));
+    //            canInside = null;
+    //        }
+
+    //        Destroy(collision.gameObject);
+    //    }
+    //}
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0) && canInside)
+        {
+            GameManager.Instance.SpawnParticle("incorrect", Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 10));
+            Destroy(canInside);
+            canInside = null;
+        }
+
     }
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6528641941382580243}
   - component: {fileID: -8308496063412974538}
   - component: {fileID: 6897375847259522875}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: canyellow
   m_TagString: Item
   m_Icon: {fileID: 0}

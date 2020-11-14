@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4713248777785700008}
   - component: {fileID: -2952300506851055496}
   - component: {fileID: -8108008617002961052}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: cangreen
   m_TagString: Item
   m_Icon: {fileID: 0}
