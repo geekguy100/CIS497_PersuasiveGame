@@ -11,6 +11,7 @@ public class Pickup : MonoBehaviour
 {
     //The Rigidbody2D we are holding.
     public GameObject objectInHand = null;
+    [SerializeField] private LayerMask canLayer;
 
     //Audio
     public AudioClip grab;
@@ -42,9 +43,9 @@ public class Pickup : MonoBehaviour
     private void CheckForObject()
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, 0f);
+        RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, 0f, canLayer);
 
-        if (hit && hit.transform.CompareTag("Item"))
+        if (hit /*&& hit.transform.CompareTag("Item")*/)
         {
             objectInHand = hit.transform.gameObject;
             audSrc.PlayOneShot(grab);

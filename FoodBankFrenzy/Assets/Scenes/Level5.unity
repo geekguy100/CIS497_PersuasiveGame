@@ -1264,6 +1264,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectInHand: {fileID: 0}
+  canLayer:
+    serializedVersion: 2
+    m_Bits: 256
   grab: {fileID: 8300000, guid: 32d4b1811dda14a6cb9e059ee8ad17d2, type: 3}
   drop: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
   audSrc: {fileID: 2098940804}

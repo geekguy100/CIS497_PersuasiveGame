@@ -735,7 +735,6 @@ GameObject:
   - component: {fileID: 8338384527073256871}
   - component: {fileID: 8338384527073256869}
   - component: {fileID: 8338384527073256870}
-  - component: {fileID: 8338384527073256868}
   m_Layer: 5
   m_Name: Number Of Boxes
   m_TagString: Untagged
@@ -859,20 +858,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &8338384527073256868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8338384527073256856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6e92f9d0954c7149bb207c5a3cec57d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: 1
-  textbox: {fileID: 0}
 --- !u!1 &9166753513285586185
 GameObject:
   m_ObjectHideFlags: 0

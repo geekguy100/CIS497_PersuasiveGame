@@ -14,6 +14,8 @@ public class ButtonLink : MonoBehaviour
     [SerializeField] private bool levelLost = false;
     [SerializeField] private bool returnToMenu = false;
 
+    private bool transitioned = false;
+
     //public void WebsiteLink()
     //{
     //    Application.OpenURL("https://www.feedingamerica.org/");
@@ -21,6 +23,11 @@ public class ButtonLink : MonoBehaviour
 
     public void BackToMainMenu()
     {
+        if (transitioned)
+            return;
+
+        transitioned = true;
+
         if (returnToMenu)
         {
             GameManager.Instance.LoadLevel(1);
