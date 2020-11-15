@@ -644,7 +644,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7835910116366320035, guid: 5015ef5f75d77e246b0662ad2596ad10, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 170
+      value: 179.34775
       objectReference: {fileID: 0}
     - target: {fileID: 7835910116366320035, guid: 5015ef5f75d77e246b0662ad2596ad10, type: 3}
       propertyPath: m_AnchorMin.x
@@ -781,6 +781,10 @@ PrefabInstance:
     - target: {fileID: 8878265018456638114, guid: 5015ef5f75d77e246b0662ad2596ad10, type: 3}
       propertyPath: m_margin.x
       value: 0.05133935
+      objectReference: {fileID: 0}
+    - target: {fileID: 8878265018456638114, guid: 5015ef5f75d77e246b0662ad2596ad10, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8338384527073256868, guid: 5015ef5f75d77e246b0662ad2596ad10, type: 3}
