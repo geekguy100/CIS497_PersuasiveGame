@@ -5,11 +5,7 @@ Description: Sets the Pause menu to the Screen and the Button Functionality
 Date: October 28, 2020
 */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class PauseMenuScript : MonoBehaviour
 {
@@ -20,8 +16,8 @@ public class PauseMenuScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Checks if the Escape key is pressed
-        if (Input.GetKeyDown(KeyCode.Escape))
+        //Checks if the P key is pressed
+        if (Input.GetKeyDown(KeyCode.P) && !GameManager.Instance.GameOver)
         {
             //If the game is paused then it will unpause the game
             if (GameIsPaused)
@@ -48,6 +44,7 @@ public class PauseMenuScript : MonoBehaviour
     {
         //Sets the timescale back to default and goes back to the main menu Scene
         Time.timeScale = 1f;
+        GameIsPaused = false;
         GameManager.Instance.LoadLevel(1);
     }
 

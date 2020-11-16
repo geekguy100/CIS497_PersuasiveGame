@@ -48,20 +48,20 @@ public class TutorialTextScript : MonoBehaviour
         //Checks if there is no object in hand and if the first entry in the array is true, if so it will change the text again
         if (PickupScript.objectInHand == null && tutorialsCompleted[0] == true)
         {
-            tutorialText.SetText("Controls\nPress Escape to pause the game.");
+            tutorialText.SetText("Controls\nPress the \'P\' key to pause the game.");
             tutorialsCompleted[1] = true;
         }
-        //Checks if the escape key is pressed and if the second entry in the array is true, if so it will change the text one final time
-        if (Input.GetKeyDown(KeyCode.Escape) && tutorialsCompleted[1] == true)
+        //Checks if the 'P' key is pressed and if the second entry in the array is true, if so it will change the text one final time
+        if (Input.GetKeyDown(KeyCode.P) && tutorialsCompleted[1] == true)
         {
-            tutorialText.SetText("Congratulations! You have completed this part of the tutoial!\n All you have to do now is put the cans required into the box!\n" +
+            tutorialText.SetText("Congratulations! You have completed this part of the tutorial!\n All you have to do now is put the cans required into the box!\n" +
                 "Be aware that dropping a can into the wrong box will result in a 2 second time loss!");
             tutorialsCompleted[2] = true;
         }
         //Checks if the third entry in the array is true and will change the text to the text in the above if statement
         if (tutorialsCompleted[2] == true)
         {
-            tutorialText.SetText("Congratulations! You have completed this part of the tutoial!\nAll you have to do now is put the cans required into the box!\n" +
+            tutorialText.SetText("Congratulations! You have completed this part of the tutorial!\nAll you have to do now is put the cans required into the box!\n" +
                 "Be aware that dropping a can into the wrong box will result in a 2 second time loss!");
         }
     }
