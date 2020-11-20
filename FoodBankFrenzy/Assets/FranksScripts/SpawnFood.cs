@@ -26,7 +26,8 @@ public class SpawnFood : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.levelStarted)
+        //Once the level has started, start spawning food.
+        if (GameManager.Instance.levelStarted && !GameManager.Instance.GameOver)
         {
             if (!isStarted)
             {

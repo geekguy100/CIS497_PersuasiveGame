@@ -131,13 +131,6 @@ public class GameManager : Singleton<GameManager>
             return;
         }
 
-        //Make sure to reset all level-related variables before loading into the next one,
-        //or else the level will automatically start!
-        levelSetup = false;
-        levelStarted = false;
-        gameOver = false;
-        gameWon = false;
-
         timer.time = level.LevelTime;
 
         //if (!level.IsTutorial)
@@ -186,6 +179,14 @@ public class GameManager : Singleton<GameManager>
     {
         timer.Stop();
         currentLevel = level;
+
+        //Make sure to reset all level-related variables before loading into the next one,
+        //or else blobs of cans may spawn and the next level will start automatically.
+        levelSetup = false;
+        levelStarted = false;
+        gameOver = false;
+        gameWon = false;
+
 
         //Only load the InterGameplayScene between playable levels.
         if (loadInterScene)
