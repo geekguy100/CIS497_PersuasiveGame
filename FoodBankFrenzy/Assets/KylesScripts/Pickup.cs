@@ -13,6 +13,10 @@ public class Pickup : MonoBehaviour
     public GameObject objectInHand = null;
     [SerializeField] private LayerMask canLayer;
 
+    public bool isHeld;
+    private GameObject itemHeld = null;
+    public GameObject canHolder;
+
     //Audio
     public AudioClip grab;
     public AudioClip drop;
@@ -21,6 +25,7 @@ public class Pickup : MonoBehaviour
     private void Awake()
     {
         audSrc = GetComponent<AudioSource>();
+        isHeld = false;
     }
 
     private void Update()
@@ -28,13 +33,15 @@ public class Pickup : MonoBehaviour
         //Don't allow items to be picked up, dropped, etc., after the game has ended.
         if (GameManager.Instance.GameOver)
             return;
-
+        
         //Check to see if there's an object we can pick up on mouse click if we don't have one in our hand.
         if (Input.GetButtonDown("Fire1") && objectInHand == null)
             CheckForObject();
         //Drop the object if we have something in our hand.
         else if (Input.GetButtonDown("Fire1") && objectInHand != null)
             DropObject();
+        else if (Input.GetButtonDown("Fire2") && objectInHand != null)
+            Hold();
         //If all other conditions fail, move the object to the mouse position.
         else if (objectInHand != null)
             MoveObject();
@@ -49,6 +56,12 @@ public class Pickup : MonoBehaviour
         {
             objectInHand = hit.transform.gameObject;
             audSrc.PlayOneShot(grab);
+            if (objectInHand.GetComponent<Item>().isBeingHeld)
+            {
+                objectInHand.GetComponent<Item>().isBeingHeld = false;
+                itemHeld = null;
+                //isHeld = false;
+            }
         }
     }
 
@@ -62,5 +75,34 @@ public class Pickup : MonoBehaviour
     {
         objectInHand = null;
         audSrc.PlayOneShot(drop);
+    }
+    
+    private void Hold()
+    {
+        if (itemHeld)
+        {
+            Destroy(itemHeld);
+        }
+
+        itemHeld = objectInHand;
+        itemHeld.transform.position = canHolder.transform.position;
+        //isHeld = true;
+        objectInHand.GetComponent<Item>().isBeingHeld = true;
+        DropObject();
+
+        //else if (!itemHeld)
+        //{
+        //itemHeld = objectInHand;
+        //itemHeld.transform.position = canHolder.transform.position;
+        ////isHeld = true;
+        //objectInHand.GetComponent<Item>().isBeingHeld = true;
+        //DropObject();
+        //}
+        //else
+        //{
+        //    GameManager.Instance.SpawnParticle("incorrect", Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 10));
+        //    Destroy(objectInHand);
+        //    objectInHand = null;
+        //}
     }
 }

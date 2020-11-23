@@ -34,8 +34,11 @@ public class DestroyWithTag : MonoBehaviour
             //    GameManager.Instance.SpawnParticle("incorrect", Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 10));
             //    canInside = null;
             //}
-
-            Destroy(col.gameObject);
+            if (!col.GetComponent<Item>().isBeingHeld)
+            {
+                Destroy(col.gameObject);
+            }
+            
         }
     }
 
@@ -65,7 +68,7 @@ public class DestroyWithTag : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && canInside)
+        if (Input.GetMouseButtonDown(0) && !canInside.GetComponent<Item>().isBeingHeld)
         {
             GameManager.Instance.SpawnParticle("incorrect", Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 10));
             Destroy(canInside);

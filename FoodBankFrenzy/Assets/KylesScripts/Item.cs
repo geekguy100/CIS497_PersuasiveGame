@@ -13,4 +13,6 @@ public class Item : MonoBehaviour
     [SerializeField] private Type itemType;
 
     public Type ItemType { get { return itemType; } }
+
+    public bool isBeingHeld;
 }
