@@ -52,7 +52,7 @@ public class Pickup : MonoBehaviour
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, 0f, canLayer);
 
-        if (hit /*&& hit.transform.CompareTag("Item")*/)
+        if (hit)
         {
             objectInHand = hit.transform.gameObject;
             audSrc.PlayOneShot(grab);
@@ -60,7 +60,6 @@ public class Pickup : MonoBehaviour
             {
                 objectInHand.GetComponent<Item>().isBeingHeld = false;
                 itemHeld = null;
-                //isHeld = false;
             }
         }
     }
@@ -85,24 +84,10 @@ public class Pickup : MonoBehaviour
         }
 
         itemHeld = objectInHand;
-        itemHeld.transform.position = canHolder.transform.position;
-        //isHeld = true;
+        itemHeld.transform.position = canHolder.transform.position - new Vector3(0.3f,0.5f,0);
+        
         objectInHand.GetComponent<Item>().isBeingHeld = true;
         DropObject();
-
-        //else if (!itemHeld)
-        //{
-        //itemHeld = objectInHand;
-        //itemHeld.transform.position = canHolder.transform.position;
-        ////isHeld = true;
-        //objectInHand.GetComponent<Item>().isBeingHeld = true;
-        //DropObject();
-        //}
-        //else
-        //{
-        //    GameManager.Instance.SpawnParticle("incorrect", Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 10));
-        //    Destroy(objectInHand);
-        //    objectInHand = null;
-        //}
+        
     }
 }
