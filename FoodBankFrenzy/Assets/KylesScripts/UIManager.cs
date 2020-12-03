@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timeText = null;
     [SerializeField] private TextMeshProUGUI numBoxesText = null;
     [SerializeField] private TextMeshProUGUI gameStatusText = null;
+    [SerializeField] private TextMeshProUGUI levelText = null;
 
     public void UpdateTimerText(float t)
     {
@@ -29,10 +30,16 @@ public class UIManager : MonoBehaviour
         gameStatusText.text = t;
     }
 
+    private void SetLevelText(int l)
+    {
+        levelText.text = "Level: " + l;
+    }
+
     public void SetupLevel(Level l)
     {
         UpdateTimerText(l.LevelTime);
         UpdateNumBoxesText(l.MaxBoxes);
+        SetLevelText(l.LevelNumber);
         UpdateGameStatusText("Press any key to start.");
     }
 }

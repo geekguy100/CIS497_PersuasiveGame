@@ -9,13 +9,18 @@ using UnityEngine;
 
 public class Level : MonoBehaviour
 {
+    //The level to display on the UI.
+    [SerializeField] private int levelNumber = -1;
+    public int LevelNumber { get { return levelNumber; } }
+
     [SerializeField] private bool tutorial = false;
     public bool IsTutorial { get { return tutorial; } }
 
     //The score required to win the level.
     [SerializeField] private int maxBoxes = 0;
-
     public int MaxBoxes { get { return maxBoxes; } }
+
+    //Number of boxes completed.
     public int score;
     public int Score
     {
@@ -32,6 +37,7 @@ public class Level : MonoBehaviour
         }
     }
 
+    //How many box holders we are using for this level.
     [SerializeField] private int boxHoldersInUse = 3;
     public int BoxHoldersInUse { get { return boxHoldersInUse; } }
 

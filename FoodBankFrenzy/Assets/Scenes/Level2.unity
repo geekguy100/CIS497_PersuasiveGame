@@ -603,6 +603,10 @@ PrefabInstance:
       propertyPath: boxHoldersInUse
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4962806636137391692, guid: 5554266676ce629418c58daa1ea43e6f, type: 3}
+      propertyPath: levelNumber
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4962806636137391693, guid: 5554266676ce629418c58daa1ea43e6f, type: 3}
       propertyPath: m_Name
       value: Level
@@ -1298,6 +1302,10 @@ PrefabInstance:
     - target: {fileID: 1902998953919524058, guid: 166036ee283ee7849a9abed981f21d1d, type: 3}
       propertyPath: m_RootOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3085579657236709652, guid: 166036ee283ee7849a9abed981f21d1d, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8338384525504453144, guid: 166036ee283ee7849a9abed981f21d1d, type: 3}
       propertyPath: m_LocalPosition.x

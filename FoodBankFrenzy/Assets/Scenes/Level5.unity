@@ -616,6 +616,10 @@ PrefabInstance:
       propertyPath: levelTime
       value: 120
       objectReference: {fileID: 0}
+    - target: {fileID: 4962806636137391692, guid: 5554266676ce629418c58daa1ea43e6f, type: 3}
+      propertyPath: levelNumber
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4962806636137391693, guid: 5554266676ce629418c58daa1ea43e6f, type: 3}
       propertyPath: m_Name
       value: Level
