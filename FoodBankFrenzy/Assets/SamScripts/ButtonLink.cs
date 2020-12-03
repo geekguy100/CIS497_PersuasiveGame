@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /*
  * Sam Ferstein
@@ -15,11 +15,15 @@ public class ButtonLink : MonoBehaviour
     [SerializeField] private bool returnToMenu = false;
 
     private bool transitioned = false;
-
-    //public void WebsiteLink()
-    //{
-    //    Application.OpenURL("https://www.feedingamerica.org/");
-    //}
+    
+    void Start()
+    {
+        //Update the "Next Level" button to say "Go to Title Screen" if the last lvl was just compelted.
+        if ((GameManager.Instance.PreviousLevel + 1 > 7) && name == "MainMenuButton")
+        {
+            GetComponentInChildren<Text>().text = "Return to Title Screen";
+        }
+    }
 
     public void BackToMainMenu()
     {
@@ -42,7 +46,7 @@ public class ButtonLink : MonoBehaviour
         }
 
         //Proceed to next lvl if won.
-        //Load the menu if the next level is the win scene; the player has finished the final level, so go back to main menu.
+        //Load the menu if the next level is the win scene; the player has finished the final level, so go back to title screen.
         if (GameManager.Instance.PreviousLevel + 1 > 7)
             GameManager.Instance.LoadLevel(0);
         else
