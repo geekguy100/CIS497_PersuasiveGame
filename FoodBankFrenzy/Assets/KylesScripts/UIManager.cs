@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateNumBoxesText(int s)
     {
-        numBoxesText.text = "Number of Boxes: " + s;
+        numBoxesText.text = "X " + s;
     }
 
     public void UpdateGameStatusText(string t)

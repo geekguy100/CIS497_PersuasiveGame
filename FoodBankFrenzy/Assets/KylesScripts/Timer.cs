@@ -44,8 +44,8 @@ public class Timer : MonoBehaviour
     {
         if (GameManager.Instance.GameOver)
         {
-            print("Timer :: Game is over???");
             Stop();
+            return;
         }
 
         time -= Time.deltaTime;
