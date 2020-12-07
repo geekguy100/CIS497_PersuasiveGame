@@ -9,8 +9,6 @@ using UnityEngine;
 
 public class Level : MonoBehaviour
 {
-    public TutorialTextScript TutorialScript;
-
     //The level to display on the UI.
     [SerializeField] private int levelNumber = -1;
     public int LevelNumber { get { return levelNumber; } }
@@ -24,12 +22,6 @@ public class Level : MonoBehaviour
 
     //Number of boxes completed.
     public int score;
-
-    private void Start()
-    {
-        TutorialScript = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TutorialTextScript>();
-    }
-
     public int Score
     {
         get { return score; }
@@ -37,19 +29,10 @@ public class Level : MonoBehaviour
         {
             ++score;
             GameManager.Instance.uiManager.UpdateNumBoxesText(maxBoxes - score);
-            if(IsTutorial == true)
+
+            if (score >= maxBoxes)
             {
-                if(score >=maxBoxes && TutorialScript.isTutorialComplete == true)
-                {
-                    GameManager.Instance.GameWon = true;
-                }
-            }
-            else
-            {
-                if (score >= maxBoxes)
-                {
-                    GameManager.Instance.GameWon = true;
-                }
+                GameManager.Instance.GameWon = true;
             }
         }
     }
