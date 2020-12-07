@@ -14,9 +14,10 @@ public class TutorialTextScript : MonoBehaviour
     //Public Variables
     public TextMeshProUGUI tutorialText;
     public Pickup PickupScript;
+    public bool IsTutorialComplete = false;
 
     //Private Boolean array
-    private bool[] tutorialsCompleted  = new bool[] { false, false, false };
+    private bool[] tutorialsCompleted  = new bool[] { false, false, false, false, false };
 
     // Start is called before the first frame update
     void Start()
@@ -45,24 +46,39 @@ public class TutorialTextScript : MonoBehaviour
             tutorialText.SetText("Controls:\nLeft Click to drop the Can.");
             tutorialsCompleted[0] = true;
         }
-        //Checks if there is no object in hand and if the first entry in the array is true, if so it will change the text again
-        if (PickupScript.objectInHand == null && tutorialsCompleted[0] == true)
+        if (PickupScript.objectInHand == null && PickupScript.isHeld == false && tutorialsCompleted[0] == true)
         {
-            tutorialText.SetText("Controls\nPress the \'P\' key to pause the game.");
+            tutorialText.SetText("Controls:\nPick up a can and Right Click to reserve a can.");
             tutorialsCompleted[1] = true;
         }
+        if (PickupScript.isHeld == true && tutorialsCompleted[1] == true)
+        {
+            tutorialText.SetText("Controls:\nLeft click on the can in Reserve to Pick it up and use it.");
+            tutorialsCompleted[2] = true;
+        }
+        //Checks if there is no object in hand and if the first entry in the array is true, if so it will change the text again
+        if (PickupScript.objectInHand == null && tutorialsCompleted[2] == true)
+        {
+            tutorialText.SetText("Controls\nPress the \'P\' key to pause the game.");
+            tutorialsCompleted[3] = true;
+        }
         //Checks if the 'P' key is pressed and if the second entry in the array is true, if so it will change the text one final time
-        if (Input.GetKeyDown(KeyCode.P) && tutorialsCompleted[1] == true)
+        if (Input.GetKeyDown(KeyCode.P) && tutorialsCompleted[3] == true)
         {
             tutorialText.SetText("Congratulations! You have completed this part of the tutorial!\n All you have to do now is put the cans required into the box!\n" +
                 "Be aware that dropping a can into the wrong box will result in a 2 second time loss!");
-            tutorialsCompleted[2] = true;
+            tutorialsCompleted[4] = true;
         }
         //Checks if the third entry in the array is true and will change the text to the text in the above if statement
-        if (tutorialsCompleted[2] == true)
+        if (tutorialsCompleted[4] == true)
         {
             tutorialText.SetText("Congratulations! You have completed this part of the tutorial!\nAll you have to do now is put the cans required into the box!\n" +
                 "Be aware that dropping a can into the wrong box will result in a 2 second time loss!");
+
+            if(IsTutorialComplete == false)
+            {
+                IsTutorialComplete = true;
+            }
         }
     }
 }
