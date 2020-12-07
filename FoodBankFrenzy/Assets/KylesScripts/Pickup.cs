@@ -60,6 +60,7 @@ public class Pickup : MonoBehaviour
             {
                 objectInHand.GetComponent<Item>().isBeingHeld = false;
                 itemHeld = null;
+                isHeld = false;
             }
         }
     }
@@ -78,14 +79,14 @@ public class Pickup : MonoBehaviour
     
     private void Hold()
     {
-        if (itemHeld)
+        if (isHeld)
         {
             Destroy(itemHeld);
         }
 
         itemHeld = objectInHand;
         itemHeld.transform.position = canHolder.transform.position;
-        
+        isHeld = true;
         objectInHand.GetComponent<Item>().isBeingHeld = true;
         DropObject();
         
