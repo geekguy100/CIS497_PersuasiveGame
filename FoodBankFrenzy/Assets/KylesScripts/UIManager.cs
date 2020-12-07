@@ -34,7 +34,7 @@ public class UIManager : MonoBehaviour
     {
         if (l == -1)
         {
-            levelText.text = "Level: Tutorial";
+            levelText.text = "Tutorial";
         }
         else
         {
