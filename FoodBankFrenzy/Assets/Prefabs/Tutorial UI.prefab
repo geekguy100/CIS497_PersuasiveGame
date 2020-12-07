@@ -1560,7 +1560,7 @@ GameObject:
   - component: {fileID: 2228420482461224582}
   m_Layer: 0
   m_Name: Tutuorial Text
-  m_TagString: Untagged
+  m_TagString: TutorialText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1698,6 +1698,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tutorialText: {fileID: 8878265018456638114}
   PickupScript: {fileID: 0}
+<<<<<<< Updated upstream
 --- !u!1001 &1231858702
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1800,3 +1801,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6543345055583716501, guid: 5e3050fbafcf3664bb83ae5b9e2c7eae, type: 3}
   m_PrefabInstance: {fileID: 1231858702}
   m_PrefabAsset: {fileID: 0}
+=======
+  isTutorialComplete: 0
+>>>>>>> Stashed changes
