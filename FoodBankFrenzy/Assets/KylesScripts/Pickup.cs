@@ -84,7 +84,7 @@ public class Pickup : MonoBehaviour
         }
 
         itemHeld = objectInHand;
-        itemHeld.transform.position = canHolder.transform.position - new Vector3(0.3f,0.5f,0);
+        itemHeld.transform.position = canHolder.transform.position;
         
         objectInHand.GetComponent<Item>().isBeingHeld = true;
         DropObject();

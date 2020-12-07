@@ -17,7 +17,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateTimerText(float t)
     {
-        timeText.text = "Timer: " + Mathf.CeilToInt(t);
+        timeText.text = "        X " + Mathf.CeilToInt(t);
     }
 
     public void UpdateNumBoxesText(int s)
@@ -32,7 +32,14 @@ public class UIManager : MonoBehaviour
 
     private void SetLevelText(int l)
     {
-        levelText.text = "Level: " + l;
+        if (l == -1)
+        {
+            levelText.text = "Level: Tutorial";
+        }
+        else
+        {
+            levelText.text = "Level: " + l;
+        }
     }
 
     public void SetupLevel(Level l)
