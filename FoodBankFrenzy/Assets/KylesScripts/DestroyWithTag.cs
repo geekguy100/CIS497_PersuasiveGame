@@ -49,6 +49,7 @@ public class DestroyWithTag : MonoBehaviour
         {
             GameManager.Instance.SpawnParticle("incorrect", Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 10));
             Destroy(canInside);
+            FeedbackFaceManager.Instance.Animate(false);
             canInside = null;
         }
 

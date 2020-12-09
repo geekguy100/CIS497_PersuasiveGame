@@ -118,7 +118,7 @@ public class GameManager : Singleton<GameManager>
 
     /// <summary>
     /// Setup the current level by re-initializing level time and timer.
-    /// Also, call SetupLevel() in the ScoreManager and UIManager.
+    /// Also, call SetupLevel() in the UIManager.
     /// </summary>
     private void SetupLevel()
     {

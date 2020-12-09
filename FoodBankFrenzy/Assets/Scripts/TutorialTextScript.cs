@@ -78,6 +78,8 @@ public class TutorialTextScript : MonoBehaviour
             if(IsTutorialComplete == false)
             {
                 IsTutorialComplete = true;
+                if (GameManager.Instance.level.score >= GameManager.Instance.level.MaxBoxes)
+                    GameManager.Instance.GameWon = true;
             }
         }
     }

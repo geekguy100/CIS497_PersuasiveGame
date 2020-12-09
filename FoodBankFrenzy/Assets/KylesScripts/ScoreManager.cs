@@ -19,6 +19,8 @@ public class ScoreManager : MonoBehaviour
         {
             ++score;
 
+            FeedbackFaceManager.Instance.Animate(true);
+
             if (score >= maxScore)
             {
                 GameManager.Instance.GameWon = true;

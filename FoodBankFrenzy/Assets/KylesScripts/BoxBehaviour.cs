@@ -148,6 +148,7 @@ public class BoxBehaviour : MonoBehaviour
         GameManager.Instance.audSrc.PlayOneShot(GameManager.Instance.incorrect, 0.2f);
         GameManager.Instance.timer.time -= 2f;
         Destroy(item.gameObject);
+        FeedbackFaceManager.Instance.Animate(false);
         return false;
 
         //Maybe use layers for the box trigger so we can keep track of what exactly the box can and cannot accept?

@@ -17,6 +17,7 @@ TagManager:
   - Crossfader
   - MisclickDestroyer
   - TutorialText
+  - Face
   layers:
   - Default
   - TransparentFX

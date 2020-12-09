@@ -27,7 +27,8 @@ public class Level : MonoBehaviour
 
     private void Start()
     {
-        tutorialTextScript = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TutorialTextScript>();
+        if (tutorial)
+            tutorialTextScript = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TutorialTextScript>();
     }
 
     public int Score
@@ -36,6 +37,7 @@ public class Level : MonoBehaviour
         set
         {
             ++score;
+            FeedbackFaceManager.Instance.Animate(true);
             GameManager.Instance.uiManager.UpdateNumBoxesText(maxBoxes - score);
 
             if(IsTutorial == true)
