@@ -84,7 +84,7 @@ public class Pickup : MonoBehaviour
     
     private void Hold()
     {
-        if (itemHeld != null)
+        if (itemHeld != null && itemHeld != objectInHand)
         {
             Destroy(itemHeld);
         }
