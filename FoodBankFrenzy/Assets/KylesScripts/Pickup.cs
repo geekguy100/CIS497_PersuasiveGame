@@ -13,8 +13,8 @@ public class Pickup : MonoBehaviour
     public GameObject objectInHand = null;
     [SerializeField] private LayerMask canLayer;
 
-    public bool isHeld;
-    private GameObject itemHeld = null;
+    //public bool isHeld;
+    public GameObject itemHeld = null;
     public GameObject canHolder;
 
     //Audio
@@ -25,7 +25,6 @@ public class Pickup : MonoBehaviour
     private void Awake()
     {
         audSrc = GetComponent<AudioSource>();
-        isHeld = false;
     }
 
     private void Update()
@@ -56,12 +55,12 @@ public class Pickup : MonoBehaviour
         {
             objectInHand = hit.transform.gameObject;
             audSrc.PlayOneShot(grab);
-            if (objectInHand.GetComponent<Item>().isBeingHeld)
-            {
-                objectInHand.GetComponent<Item>().isBeingHeld = false;
-                itemHeld = null;
-                isHeld = false;
-            }
+            //if (objectInHand.GetComponent<Item>().isBeingHeld)
+            //{
+            //    objectInHand.GetComponent<Item>().isBeingHeld = false;
+            //    itemHeld = null;
+            //    isHeld = false;
+            //}
         }
     }
 
@@ -73,22 +72,27 @@ public class Pickup : MonoBehaviour
 
     private void DropObject()
     {
+        if (objectInHand == itemHeld)
+        {
+            itemHeld = null;
+       //     objectInHand.GetComponent<Item>().isBeingHeld = false;
+        }
+
         objectInHand = null;
         audSrc.PlayOneShot(drop);
     }
     
     private void Hold()
     {
-        if (isHeld)
+        if (itemHeld != null)
         {
             Destroy(itemHeld);
         }
 
         itemHeld = objectInHand;
         itemHeld.transform.position = canHolder.transform.position;
-        isHeld = true;
-        objectInHand.GetComponent<Item>().isBeingHeld = true;
-        DropObject();
-        
+        // objectInHand.GetComponent<Item>().isBeingHeld = true;
+        objectInHand = null;
+
     }
 }

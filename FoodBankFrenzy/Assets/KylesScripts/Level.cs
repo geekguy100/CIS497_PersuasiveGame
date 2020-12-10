@@ -42,7 +42,7 @@ public class Level : MonoBehaviour
 
             if(IsTutorial == true)
             {
-                if(tutorialTextScript.IsTutorialComplete == true && score >= maxBoxes)
+                if(tutorialTextScript.tutorialComplete == true && score >= maxBoxes)
                 {
                     GameManager.Instance.GameWon = true;
                 }
@@ -80,5 +80,4 @@ public class Level : MonoBehaviour
         { return maxItems; }
     
     }
-    
 }

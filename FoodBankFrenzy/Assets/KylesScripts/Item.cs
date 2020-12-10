@@ -14,5 +14,5 @@ public class Item : MonoBehaviour
 
     public Type ItemType { get { return itemType; } }
 
-    public bool isBeingHeld;
+//    public bool isBeingHeld;
 }

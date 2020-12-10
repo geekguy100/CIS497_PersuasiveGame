@@ -122,6 +122,8 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     private void SetupLevel()
     {
+        gameOver = false;
+        gameWon = false;
         level = FindObjectOfType<Level>();
 
         //If there is no level found, we're on a menu scene.
@@ -184,9 +186,6 @@ public class GameManager : Singleton<GameManager>
         //or else blobs of cans may spawn and the next level will start automatically.
         levelSetup = false;
         levelStarted = false;
-        gameOver = false;
-        gameWon = false;
-
 
         //Only load the InterGameplayScene between playable levels.
         if (loadInterScene)

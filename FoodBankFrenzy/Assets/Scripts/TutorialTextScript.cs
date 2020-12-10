@@ -14,10 +14,10 @@ public class TutorialTextScript : MonoBehaviour
     //Public Variables
     public TextMeshProUGUI tutorialText;
     public Pickup PickupScript;
-    public bool IsTutorialComplete = false;
 
-    //Private Boolean array
-    private bool[] tutorialsCompleted  = new bool[] { false, false, false, false, false };
+    private int tutorialNum = 0;
+
+    public bool tutorialComplete = false;
 
     // Start is called before the first frame update
     void Start()
@@ -30,57 +30,66 @@ public class TutorialTextScript : MonoBehaviour
 
         //Sets the Tutuorial Text
         tutorialText.SetText("Controls:\nLeft Click to pick up a can.");
-
-        //Sets each bool in the array to false
-        for(int i = 0; i < tutorialsCompleted.Length; i++)
-        {
-            tutorialsCompleted[i] = false;
-        }
     }
 
     private void Update()
     {
-        //Checks if there is an object in hand and if the 1st entry in the array is false, if so it will change the text
-        if (PickupScript.objectInHand != null && tutorialsCompleted[0] == false)
+        if (tutorialNum == 0)
         {
-            tutorialText.SetText("Controls:\nLeft Click to drop the Can.");
-            tutorialsCompleted[0] = true;
-        }
-        if (PickupScript.objectInHand == null && PickupScript.isHeld == false && tutorialsCompleted[0] == true)
-        {
-            tutorialText.SetText("Controls:\nPick up a can and Right Click to reserve a can.");
-            tutorialsCompleted[1] = true;
-        }
-        if (PickupScript.isHeld == true && tutorialsCompleted[1] == true)
-        {
-            tutorialText.SetText("Controls:\nLeft click on the can in Reserve to Pick it up and use it.");
-            tutorialsCompleted[2] = true;
-        }
-        //Checks if there is no object in hand and if the first entry in the array is true, if so it will change the text again
-        if (PickupScript.objectInHand == null && tutorialsCompleted[2] == true)
-        {
-            tutorialText.SetText("Controls\nPress the \'P\' key to pause the game.");
-            tutorialsCompleted[3] = true;
-        }
-        //Checks if the 'P' key is pressed and if the second entry in the array is true, if so it will change the text one final time
-        if (Input.GetKeyDown(KeyCode.P) && tutorialsCompleted[3] == true)
-        {
-            tutorialText.SetText("Congratulations! You have completed this part of the tutorial!\n All you have to do now is put the cans required into the box!\n" +
-                "Be aware that dropping a can into the wrong box will result in a 2 second time loss!");
-            tutorialsCompleted[4] = true;
-        }
-        //Checks if the third entry in the array is true and will change the text to the text in the above if statement
-        if (tutorialsCompleted[4] == true)
-        {
-            tutorialText.SetText("Congratulations! You have completed this part of the tutorial!\nAll you have to do now is put the cans required into the box!\n" +
-                "Be aware that dropping a can into the wrong box will result in a 2 second time loss!");
-
-            if(IsTutorialComplete == false)
+            //If there's an object in the player's hand, complete tutorial 0.
+            if (PickupScript.objectInHand)
             {
-                IsTutorialComplete = true;
-                if (GameManager.Instance.level.score >= GameManager.Instance.level.MaxBoxes)
-                    GameManager.Instance.GameWon = true;
+                tutorialText.SetText("Controls:\nLeft Click to drop the Can.");
+                tutorialNum++;
             }
+        }
+        else if (tutorialNum == 1)
+        {
+            //If the object is removed from the player's hand (dropped), go to the next tutorial.
+            if (!PickupScript.objectInHand)
+            {
+                tutorialText.SetText("Controls:\nPick up a can and Right Click to reserve a can.");
+                tutorialNum++;
+
+            }
+        }
+        else if (tutorialNum == 2)
+        {
+            //If a can gets reserve, continue to next tutorial.
+            if (PickupScript.itemHeld != null)
+            {
+                tutorialText.SetText("Controls:\nLeft click on the can in Reserve to Pick it up and use it.");
+                tutorialNum++;
+            }         
+        }
+        else if (tutorialNum == 3)
+        {
+            //If the player picks up and uses the can in the reserve, continue the tutorial.
+            if (PickupScript.itemHeld == null)
+            {
+                tutorialText.SetText("Controls\nPress the \'P\' key to pause the game.");
+                tutorialNum++;
+            }
+        }
+        else if (tutorialNum == 4)
+        {
+            //Once the player pauses the game, complete the tutorial.
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                tutorialText.SetText("Congratulations! You have completed this part of the tutorial!\nAll you have to do now is put the cans required into the box!\n" +
+                "Be aware that dropping a can into the wrong box will result in a 2 second time loss!");
+                tutorialComplete = true;
+                tutorialNum++;
+            }
+        }
+        //Now that all of the tutorial lvls are complete, wait for the player to complete the level.
+        else if (tutorialComplete)
+        {
+            if(!GameManager.Instance.GameWon && GameManager.Instance.level.score >= GameManager.Instance.level.MaxBoxes)
+            {
+                GameManager.Instance.GameWon = true;
+            }
+
         }
     }
 }
